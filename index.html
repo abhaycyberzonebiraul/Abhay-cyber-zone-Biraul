@@ -152,6 +152,46 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
+        /* --- Social Media Hover Effects --- */
+        .social-link {
+            transition: all 0.4s var(--ios-bezier);
+        }
+        .social-link:hover {
+            transform: scale(1.15);
+        }
+        .social-glow-fb:hover { text-shadow: 0 0 15px #1877F2; color: #1877F2; border-color: rgba(24, 119, 242, 0.5); }
+        .social-glow-wa:hover { text-shadow: 0 0 15px #25D366; color: #25D366; border-color: rgba(37, 211, 102, 0.5); }
+        .social-glow-tg:hover { text-shadow: 0 0 15px #0088cc; color: #0088cc; border-color: rgba(0, 136, 204, 0.5); }
+        .social-glow-ig:hover { text-shadow: 0 0 15px #E1306C; color: #E1306C; border-color: rgba(225, 48, 108, 0.5); }
+        
+        /* --- Floating Social Bar (Left) --- */
+        .floating-social-bar {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 12px 10px;
+        }
+        @media (max-width: 768px) {
+            .floating-social-bar {
+                display: none;
+            }
+        }
+        
+        /* --- WhatsApp Floating Button Animation --- */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        .wa-float-btn {
+            animation: pulse-ring 2s infinite;
+        }
     </style>
 </head>
 <body>
@@ -160,6 +200,30 @@
     <div class="bg-system"></div>
     <div class="bg-overlay" id="dynamic-overlay"></div>
 
+    <!-- --- Floating Social Media Bar (Left Side) --- -->
+    <div class="floating-social-bar ios-glass rounded-full border border-white/10 shadow-lg">
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/share/1CTm9V4Tc4/" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center text-white/80 social-link social-glow-fb" title="Facebook">
+            <i class="fa-brands fa-facebook-f text-lg"></i>
+        </a>
+        <!-- WhatsApp Channel -->
+        <a href="https://whatsapp.com/channel/0029Vb6jt56HbFV8tjB5EI3x" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center text-white/80 social-link social-glow-wa" title="WhatsApp Channel">
+            <i class="fa-brands fa-whatsapp text-lg"></i>
+        </a>
+        <!-- WhatsApp Group -->
+        <a href="https://chat.whatsapp.com/D68lgG7j30n6jM9vOckGpG?mode=gi_t" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center text-white/80 social-link social-glow-wa" title="Join WhatsApp Group">
+            <i class="fa-solid fa-users text-sm"></i>
+        </a>
+        <!-- Telegram -->
+        <a href="https://t.me/Abhaycyberzonebiraul" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center text-white/80 social-link social-glow-tg" title="Telegram">
+            <i class="fa-brands fa-telegram text-lg"></i>
+        </a>
+        <!-- Instagram -->
+        <a href="https://instagram.com/yourusername" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center text-white/80 social-link social-glow-ig" title="Instagram">
+            <i class="fa-brands fa-instagram text-lg"></i>
+        </a>
+    </div>
+
     <!-- Sticky Navigation -->
     <nav class="fixed w-full z-40 transition-all duration-500 ios-glass-nav" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -167,9 +231,7 @@
                 
                 <!-- Logo & Trigger -->
                 <div class="flex-shrink-0 flex items-center cursor-pointer select-none group" id="logo-trigger" title="Abhay Cyber Zone">
-                    <!-- Apple style smooth rounded logo wrapper -->
                     <div class="w-11 h-11 rounded-[12px] bg-white/10 flex items-center justify-center mr-3 shadow-sm border border-white/10 overflow-hidden transition-transform duration-300 group-active:scale-95">
-                        <!-- Using required logo.png -->
                         <img src="logo.png" alt="Logo" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <i class="fa-solid fa-bolt text-white text-xl hidden" style="display: none;"></i>
                     </div>
@@ -345,7 +407,7 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 ios-fade-up">
                 
-                <!-- Contact Info (Spans 2 cols) -->
+                <!-- Contact Info -->
                 <div class="lg:col-span-2 ios-glass p-10 rounded-[28px] flex flex-col justify-between relative overflow-hidden">
                     <div class="absolute -top-24 -right-24 w-48 h-48 rounded-full blur-[60px] opacity-30" style="background: var(--ios-accent)"></div>
                     
@@ -353,51 +415,55 @@
                         <h4 class="text-2xl font-bold text-white mb-8 tracking-tight">Contact Information</h4>
                         <div class="space-y-8">
                             <a href="tel:+919102288372" id="cms-contact-call" class="flex items-center text-white/80 hover:text-white transition-colors group">
-                                <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mr-5 group-hover:bg-white/20 transition duration-300">
+                                <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mr-5 group-hover:bg-white/20 transition duration-300 border border-white/5">
                                     <i class="fa-solid fa-phone text-lg"></i>
                                 </div>
                                 <div>
-                                    <p class="text-[11px] font-semibold tracking-wider uppercase text-white/50 mb-0.5">Call Us Directly</p>
-                                    <p class="text-lg font-medium tracking-wide text-white" id="cms-phone-text">+91 91022 88372</p>
+                                    <p class="text-[11px] font-semibold tracking-wider uppercase text-white/50 mb-1">Call Us</p>
+                                    <p class="text-base font-medium">+91 9102288372</p>
                                 </div>
                             </a>
-                            
-                            <a href="https://wa.me/919102288372" id="cms-contact-wa" target="_blank" class="flex items-center text-white/80 hover:text-white transition-colors group">
-                                <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mr-5 group-hover:bg-[#25D366]/30 transition duration-300">
-                                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                            <a href="mailto:support@abhaycyberzone.com" id="cms-contact-email" class="flex items-center text-white/80 hover:text-white transition-colors group">
+                                <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mr-5 group-hover:bg-white/20 transition duration-300 border border-white/5">
+                                    <i class="fa-solid fa-envelope text-lg"></i>
                                 </div>
                                 <div>
-                                    <p class="text-[11px] font-semibold tracking-wider uppercase text-white/50 mb-0.5">Chat on WhatsApp</p>
-                                    <p class="text-lg font-medium tracking-wide text-white" id="cms-wa-text">+91 91022 88372</p>
+                                    <p class="text-[11px] font-semibold tracking-wider uppercase text-white/50 mb-1">Email Us</p>
+                                    <p class="text-base font-medium">support@abhaycyberzone.com</p>
                                 </div>
                             </a>
-
-                            <div class="flex items-center text-white/80">
-                                <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mr-5">
+                            <div class="flex items-center text-white/80 group">
+                                <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mr-5 group-hover:bg-white/20 transition duration-300 border border-white/5">
                                     <i class="fa-solid fa-location-dot text-lg"></i>
                                 </div>
                                 <div>
-                                    <p class="text-[11px] font-semibold tracking-wider uppercase text-white/50 mb-0.5">Visit Us</p>
-                                    <p class="text-lg font-medium tracking-wide text-white" id="cms-address-text">Biraul, Bihar</p>
+                                    <p class="text-[11px] font-semibold tracking-wider uppercase text-white/50 mb-1">Location</p>
+                                    <p class="text-base font-medium">Biraul, Bihar</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Contact Form (Spans 3 cols) -->
+                <!-- Contact Form -->
                 <div class="lg:col-span-3 ios-glass p-10 rounded-[28px]">
-                    <h4 class="text-2xl font-bold text-white mb-8 tracking-tight">Send us a Message</h4>
-                    <form id="contactForm" class="space-y-5">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <input type="text" required class="ios-input w-full px-5 py-4 text-sm" placeholder="Full Name">
-                            <input type="tel" required class="ios-input w-full px-5 py-4 text-sm" placeholder="Phone Number">
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-semibold uppercase tracking-wider text-white/50 mb-2">Full Name</label>
+                                <input type="text" class="w-full ios-input px-5 py-4 text-sm" placeholder="John Doe">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold uppercase tracking-wider text-white/50 mb-2">Phone Number</label>
+                                <input type="tel" class="w-full ios-input px-5 py-4 text-sm" placeholder="+91 00000 00000">
+                            </div>
                         </div>
                         <div>
-                            <textarea rows="4" required class="ios-input w-full px-5 py-4 text-sm resize-none" placeholder="Your Message / Requirement"></textarea>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-white/50 mb-2">Message</label>
+                            <textarea rows="4" class="w-full ios-input px-5 py-4 text-sm resize-none" placeholder="How can we help you?"></textarea>
                         </div>
-                        <button type="submit" class="w-full ios-btn ios-btn-primary py-4 text-base mt-2 shadow-lg">
-                            Send Message <i class="fa-solid fa-paper-plane ml-2 text-sm"></i>
+                        <button type="submit" class="w-full ios-btn ios-btn-primary py-4 text-base font-semibold mt-2">
+                            Send Message
                         </button>
                     </form>
                 </div>
@@ -405,553 +471,117 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="mt-auto py-10 border-t border-white/10 relative z-10 bg-black/40 backdrop-blur-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
-            <div class="mb-4 md:mb-0 text-center md:text-left">
-                <h5 class="text-lg font-semibold text-white/90 tracking-tight" id="cms-footer-brand">Abhay Cyber Zone Biraul</h5>
-                <p class="text-xs text-white/50 mt-1 font-medium">&copy; 2024 All rights reserved.</p>
+    <!-- --- Footer Section --- -->
+    <footer class="relative pt-16 pb-8 mt-12 z-20 overflow-hidden border-t border-white/10 ios-glass-nav rounded-t-[40px]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-10">
+                
+                <!-- Brand Info -->
+                <div class="text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start mb-4">
+                        <div class="w-12 h-12 rounded-[12px] bg-white/10 flex items-center justify-center mr-4 shadow-sm border border-white/10 overflow-hidden">
+                            <img src="logo.png" alt="Logo" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <i class="fa-solid fa-bolt text-white text-xl hidden" style="display: none;"></i>
+                        </div>
+                        <div>
+                            <h2 class="font-bold text-xl leading-tight text-white tracking-tight">Abhay Cyber Zone</h2>
+                            <p class="text-[11px] text-white/60 font-medium tracking-wide uppercase mt-0.5" style="color: var(--ios-accent)">Biraul</p>
+                        </div>
+                    </div>
+                    <p class="text-white/50 text-sm max-w-sm mx-auto md:mx-0 font-light leading-relaxed">
+                        Your trusted digital partner. We provide fast, secure, and reliable online services directly to your fingertips.
+                    </p>
+                </div>
+
+                <!-- Connect With Us -->
+                <div class="text-center md:text-right">
+                    <h3 class="text-white font-semibold text-xs tracking-widest uppercase mb-5" style="color: var(--ios-accent)">Connect With Us</h3>
+                    <div class="flex items-center justify-center md:justify-end gap-4">
+                        <a href="https://www.facebook.com/share/1CTm9V4Tc4/" target="_blank" class="w-12 h-12 rounded-[14px] ios-glass flex items-center justify-center text-white/80 social-link social-glow-fb border border-white/10" title="Facebook">
+                            <i class="fa-brands fa-facebook-f text-lg"></i>
+                        </a>
+                        <a href="https://whatsapp.com/channel/0029Vb6jt56HbFV8tjB5EI3x" target="_blank" class="w-12 h-12 rounded-[14px] ios-glass flex items-center justify-center text-white/80 social-link social-glow-wa border border-white/10" title="WhatsApp Channel">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                        </a>
+                        <a href="https://chat.whatsapp.com/D68lgG7j30n6jM9vOckGpG?mode=gi_t" target="_blank" class="w-12 h-12 rounded-[14px] ios-glass flex items-center justify-center text-white/80 social-link social-glow-wa border border-white/10" title="Join WhatsApp Group">
+                            <i class="fa-solid fa-users text-sm"></i>
+                        </a>
+                        <a href="https://t.me/Abhaycyberzonebiraul" target="_blank" class="w-12 h-12 rounded-[14px] ios-glass flex items-center justify-center text-white/80 social-link social-glow-tg border border-white/10" title="Telegram">
+                            <i class="fa-brands fa-telegram text-lg"></i>
+                        </a>
+                        <a href="https://instagram.com/yourusername" target="_blank" class="w-12 h-12 rounded-[14px] ios-glass flex items-center justify-center text-white/80 social-link social-glow-ig border border-white/10" title="Instagram">
+                            <i class="fa-brands fa-instagram text-lg"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <p class="text-xs font-medium text-white/50 tracking-wide">Designed for Digital India <i class="fa-solid fa-heart text-red-500/80 ml-1"></i></p>
+            
+            <div class="mt-12 pt-8 border-t border-white/10 text-center flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-white/40 text-xs font-light">&copy; 2024 Abhay Cyber Zone Biraul. All rights reserved.</p>
+                <div class="flex gap-6 text-white/40 text-xs font-light">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/919102288372" id="cms-floating-wa" target="_blank" class="fixed bottom-8 right-8 w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-[0_8px_30px_rgba(37,211,102,0.4)] hover:bg-[#20bd5a] transition-all duration-400 ease-[cubic-bezier(0.25,0.8,0.25,1)] hover:scale-110 active:scale-95 z-30">
+    <!-- --- Floating WhatsApp Button (Wapas joda gaya hai) --- -->
+    <a href="https://wa.me/919102288372" target="_blank" class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center text-white shadow-2xl transition-all duration-300 hover:scale-110 wa-float-btn" style="background: linear-gradient(135deg, #25D366, #128C7E);" title="Chat with us on WhatsApp">
         <i class="fa-brands fa-whatsapp text-3xl"></i>
+        <!-- Chota notification dot -->
+        <span class="absolute top-0 right-0 flex h-4 w-4">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-4 w-4 bg-red-500 border-2 border-white"></span>
+        </span>
     </a>
 
-    <!-- ========================================== -->
-    <!-- 🔐 macOS/iOS STYLE CMS ADMIN PANEL START     -->
-    <!-- ========================================== -->
-    
-    <!-- Login Modal -->
-    <div id="admin-login-modal" class="fixed inset-0 z-[100] bg-black/60 backdrop-blur-xl hidden flex items-center justify-center opacity-0 transition-opacity duration-500 ease-[cubic-bezier(0.25,0.8,0.25,1)]">
-        <div class="ios-glass-heavy p-10 w-full max-w-sm transform scale-95 transition-transform duration-500 ease-[cubic-bezier(0.25,0.8,0.25,1)]" id="admin-login-box">
-            <div class="text-center mb-8">
-                <div class="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl" style="background: var(--ios-accent); color: white; box-shadow: 0 4px 20px rgba(var(--ios-accent-rgb), 0.5)">
-                    <i class="fa-solid fa-fingerprint"></i>
-                </div>
-                <h3 class="text-2xl font-bold text-white tracking-tight">Admin Access</h3>
-                <p class="text-xs text-white/50 mt-1 font-medium uppercase tracking-widest">Secure CMS</p>
-            </div>
-            <div class="space-y-4">
-                <input type="password" id="admin-id" class="ios-input w-full px-4 py-3 text-sm text-center tracking-widest" placeholder="Ownership ID">
-                <input type="password" id="admin-pwd" class="ios-input w-full px-4 py-3 text-sm text-center tracking-widest" placeholder="Password">
-                
-                <div id="login-error" class="hidden text-red-400 text-xs font-semibold text-center mt-2">Authentication Failed</div>
-                
-                <button id="btn-login" class="w-full ios-btn ios-btn-primary py-3.5 mt-6 text-sm">Unlock Dashboard</button>
-                <button id="btn-close-login" class="w-full text-white/50 hover:text-white text-xs font-medium py-2 transition-colors">Cancel</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Admin Dashboard Panel -->
-    <div id="admin-dashboard" class="fixed inset-0 z-[110] bg-black/50 backdrop-blur-[40px] hidden flex-col transition-all duration-700 ease-[cubic-bezier(0.25,0.8,0.25,1)] opacity-0 scale-105">
-        
-        <!-- Topbar -->
-        <div class="h-16 flex items-center justify-between px-6 shrink-0 border-b border-white/10 bg-white/5">
-            <div class="flex items-center">
-                <i class="fa-brands fa-apple text-white/80 text-xl mr-3"></i>
-                <h2 class="text-base font-semibold text-white tracking-wide">System Manager <span class="text-[10px] bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full ml-2 uppercase font-bold tracking-widest border border-green-500/30">Live Mode</span></h2>
-            </div>
-            <div class="flex space-x-3">
-                <button id="btn-reset-cms" class="ios-btn px-4 py-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 text-xs font-semibold border border-red-500/20">Reset</button>
-                <button id="btn-save-cms" class="ios-btn ios-btn-primary px-4 py-2 text-xs font-semibold shadow-none"><i class="fa-solid fa-cloud-arrow-up mr-2"></i> Save Settings</button>
-                <button id="btn-close-dashboard" class="ios-btn px-4 py-2 bg-white/10 hover:bg-white/20 text-white text-xs font-semibold"><i class="fa-solid fa-xmark mr-1"></i> Close</button>
-            </div>
-        </div>
-
-        <div class="flex flex-1 overflow-hidden">
-            <!-- Sidebar Navigation -->
-            <div class="w-64 border-r border-white/10 flex flex-col p-4 space-y-2 shrink-0 admin-scroll overflow-y-auto bg-black/20">
-                <p class="text-[10px] font-bold text-white/40 uppercase tracking-widest ml-2 mb-2 mt-2">Preferences</p>
-                
-                <button class="cms-tab-btn active w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-white bg-white/10 transition-colors flex items-center" data-target="tab-theme">
-                    <div class="w-6 h-6 rounded bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center mr-3"><i class="fa-solid fa-palette text-xs text-white"></i></div> Appearance
-                </button>
-                
-                <button class="cms-tab-btn w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-white/70 hover:bg-white/5 transition-colors flex items-center" data-target="tab-hero">
-                    <div class="w-6 h-6 rounded bg-gradient-to-br from-indigo-400 to-purple-600 flex items-center justify-center mr-3"><i class="fa-solid fa-heading text-xs text-white"></i></div> Hero Content
-                </button>
-                
-                <button class="cms-tab-btn w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-white/70 hover:bg-white/5 transition-colors flex items-center" data-target="tab-services">
-                    <div class="w-6 h-6 rounded bg-gradient-to-br from-orange-400 to-red-600 flex items-center justify-center mr-3"><i class="fa-solid fa-layer-group text-xs text-white"></i></div> Services Grid
-                </button>
-                
-                <button class="cms-tab-btn w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-white/70 hover:bg-white/5 transition-colors flex items-center" data-target="tab-contact">
-                    <div class="w-6 h-6 rounded bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center mr-3"><i class="fa-solid fa-address-book text-xs text-white"></i></div> Contact & Links
-                </button>
-            </div>
-
-            <!-- Content Area -->
-            <div class="flex-1 p-8 overflow-y-auto admin-scroll">
-                
-                <!-- Theme Tab -->
-                <div id="tab-theme" class="cms-tab-content block max-w-2xl mx-auto">
-                    <h3 class="text-2xl font-bold mb-6 text-white tracking-tight">Appearance</h3>
-                    
-                    <div class="ios-glass p-6 mb-8 border border-white/10">
-                        <label class="block text-sm font-medium text-white/80 mb-3">Accent Color (Applies to buttons, icons, highlights)</label>
-                        <div class="flex items-center space-x-4">
-                            <input type="color" id="in-color-primary" class="w-12 h-12 rounded-lg cursor-pointer border-0 p-0 bg-transparent">
-                            <input type="text" id="in-color-primary-text" class="ios-input w-32 px-3 py-2 text-sm font-mono uppercase text-center" placeholder="#0A84FF">
-                        </div>
-                    </div>
-
-                    <div class="ios-glass p-6 mb-8 border border-white/10">
-                        <label class="block text-sm font-medium text-white/80 mb-3">Background Darkness Overlay</label>
-                        <select id="in-theme-mode" class="ios-input w-full px-4 py-3 text-sm appearance-none">
-                            <option value="0.4" style="color: black;">Light Overlay (40%)</option>
-                            <option value="0.6" style="color: black;">Medium Overlay (60% - Default)</option>
-                            <option value="0.8" style="color: black;">Heavy Overlay (80%)</option>
-                        </select>
-                    </div>
-
-                    <h3 class="text-lg font-bold mb-4 text-white mt-8 border-t border-white/10 pt-6">Section Visibility</h3>
-                    <div class="ios-glass p-6 space-y-5 border border-white/10">
-                        <label class="flex items-center justify-between cursor-pointer group">
-                            <span class="text-white/80 text-sm font-medium group-hover:text-white transition">Show Services Section</span>
-                            <input type="checkbox" id="in-vis-services" class="w-5 h-5 rounded border-white/20 bg-white/10 text-blue-500 focus:ring-0">
-                        </label>
-                        <div class="h-px w-full bg-white/10"></div>
-                        <label class="flex items-center justify-between cursor-pointer group">
-                            <span class="text-white/80 text-sm font-medium group-hover:text-white transition">Show Features Section</span>
-                            <input type="checkbox" id="in-vis-features" class="w-5 h-5 rounded border-white/20 bg-white/10 text-blue-500 focus:ring-0">
-                        </label>
-                        <div class="h-px w-full bg-white/10"></div>
-                        <label class="flex items-center justify-between cursor-pointer group">
-                            <span class="text-white/80 text-sm font-medium group-hover:text-white transition">Show Contact Section</span>
-                            <input type="checkbox" id="in-vis-contact" class="w-5 h-5 rounded border-white/20 bg-white/10 text-blue-500 focus:ring-0">
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Hero Tab -->
-                <div id="tab-hero" class="cms-tab-content hidden max-w-2xl mx-auto">
-                    <h3 class="text-2xl font-bold mb-6 text-white tracking-tight">Hero Content</h3>
-                    <div class="ios-glass p-6 space-y-6 border border-white/10">
-                        <div>
-                            <label class="block text-[11px] uppercase tracking-widest text-white/50 mb-2">Brand Name</label>
-                            <input type="text" id="in-brand-name" class="ios-input w-full px-4 py-3 text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-[11px] uppercase tracking-widest text-white/50 mb-2">Top Badge Text</label>
-                            <input type="text" id="in-hero-badge" class="ios-input w-full px-4 py-3 text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-[11px] uppercase tracking-widest text-white/50 mb-2">Main Heading (HTML allowed)</label>
-                            <textarea id="in-hero-title" rows="2" class="ios-input w-full px-4 py-3 text-sm font-mono"></textarea>
-                        </div>
-                        <div>
-                            <label class="block text-[11px] uppercase tracking-widest text-white/50 mb-2">Tagline Description</label>
-                            <textarea id="in-hero-tagline" rows="3" class="ios-input w-full px-4 py-3 text-sm"></textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Services Tab -->
-                <div id="tab-services" class="cms-tab-content hidden max-w-4xl mx-auto">
-                    <h3 class="text-2xl font-bold mb-6 text-white tracking-tight">Manage Services</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- S1 -->
-                        <div class="ios-glass p-6 border border-white/10 space-y-4">
-                            <div class="text-[10px] font-bold text-white/40 uppercase tracking-widest mb-2">Card 1</div>
-                            <input type="text" id="in-s1-icon" placeholder="FontAwesome Icon (e.g. fa-solid fa-file)" class="ios-input w-full px-4 py-2 text-xs font-mono">
-                            <input type="text" id="in-s1-title" placeholder="Title" class="ios-input w-full px-4 py-3 text-sm font-semibold">
-                            <textarea id="in-s1-desc" rows="2" placeholder="Description" class="ios-input w-full px-4 py-3 text-sm"></textarea>
-                        </div>
-                        <!-- S2 -->
-                        <div class="ios-glass p-6 border border-white/10 space-y-4">
-                            <div class="text-[10px] font-bold text-white/40 uppercase tracking-widest mb-2">Card 2</div>
-                            <input type="text" id="in-s2-icon" class="ios-input w-full px-4 py-2 text-xs font-mono">
-                            <input type="text" id="in-s2-title" class="ios-input w-full px-4 py-3 text-sm font-semibold">
-                            <textarea id="in-s2-desc" rows="2" class="ios-input w-full px-4 py-3 text-sm"></textarea>
-                        </div>
-                        <!-- S3 -->
-                        <div class="ios-glass p-6 border border-white/10 space-y-4">
-                            <div class="text-[10px] font-bold text-white/40 uppercase tracking-widest mb-2">Card 3</div>
-                            <input type="text" id="in-s3-icon" class="ios-input w-full px-4 py-2 text-xs font-mono">
-                            <input type="text" id="in-s3-title" class="ios-input w-full px-4 py-3 text-sm font-semibold">
-                            <textarea id="in-s3-desc" rows="2" class="ios-input w-full px-4 py-3 text-sm"></textarea>
-                        </div>
-                        <!-- S4 -->
-                        <div class="ios-glass p-6 border border-white/10 space-y-4">
-                            <div class="text-[10px] font-bold text-white/40 uppercase tracking-widest mb-2">Card 4</div>
-                            <input type="text" id="in-s4-icon" class="ios-input w-full px-4 py-2 text-xs font-mono">
-                            <input type="text" id="in-s4-title" class="ios-input w-full px-4 py-3 text-sm font-semibold">
-                            <textarea id="in-s4-desc" rows="2" class="ios-input w-full px-4 py-3 text-sm"></textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Contact Tab -->
-                <div id="tab-contact" class="cms-tab-content hidden max-w-2xl mx-auto">
-                    <h3 class="text-2xl font-bold mb-6 text-white tracking-tight">Contact & Links</h3>
-                    <div class="ios-glass p-6 space-y-6 border border-white/10">
-                        <div>
-                            <label class="block text-[11px] uppercase tracking-widest text-white/50 mb-2">WhatsApp Number (Links - digits only)</label>
-                            <input type="text" id="in-link-wa" class="ios-input w-full px-4 py-3 text-sm font-mono">
-                        </div>
-                        <div>
-                            <label class="block text-[11px] uppercase tracking-widest text-white/50 mb-2">Phone Display Text</label>
-                            <input type="text" id="in-text-phone" class="ios-input w-full px-4 py-3 text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-[11px] uppercase tracking-widest text-white/50 mb-2">Address Display Text</label>
-                            <input type="text" id="in-text-address" class="ios-input w-full px-4 py-3 text-sm">
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <!-- ========================================== -->
-    <!-- 🔐 END HIDDEN ADMIN SYSTEM                   -->
-    <!-- ========================================== -->
-
+    <!-- Interaction Scripts -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            
-            // --- Basic Website Functionality ---
-            
-            // Mobile Menu
-            const btn = document.getElementById('mobile-menu-btn');
-            const menu = document.getElementById('mobile-menu');
-            const menuIcon = btn.querySelector('i');
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
 
-            btn.addEventListener('click', () => {
-                menu.classList.toggle('hidden');
-                menuIcon.classList.toggle('fa-bars');
-                menuIcon.classList.toggle('fa-xmark');
+        // Close mobile menu on click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
             });
-            document.querySelectorAll('#mobile-menu a').forEach(link => {
-                link.addEventListener('click', () => {
-                    menu.classList.add('hidden');
-                    menuIcon.classList.add('fa-bars');
-                    menuIcon.classList.remove('fa-xmark');
-                });
-            });
+        });
 
-            // Sticky Navbar Glass Effect adjustments based on scroll
-            const navbar = document.getElementById('navbar');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 20) {
-                    navbar.style.background = 'rgba(20, 20, 20, 0.7)';
-                    navbar.style.boxShadow = '0 4px 30px rgba(0,0,0,0.3)';
-                } else {
-                    navbar.style.background = 'rgba(20, 20, 20, 0.5)';
-                    navbar.style.boxShadow = 'none';
-                }
-            });
-
-            // Smooth Intersection Observer Animations
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
-            document.querySelectorAll('.ios-fade-up').forEach(el => observer.observe(el));
-
-
-            // ==========================================
-            // CMS ADMIN PANEL LOGIC 
-            // ==========================================
-
-            // Helper to convert hex to rgb string for CSS variables
-            function hexToRgb(hex) {
-                var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-                return result ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` : '10, 132, 255';
+        // Navbar blur on scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-lg');
+            } else {
+                navbar.classList.remove('shadow-lg');
             }
+        });
 
-            // Default Data Structure
-            const defaultCMSData = {
-                theme: {
-                    primaryColor: '#0A84FF', // Apple Blue
-                    mode: '0.6' // Overlay opacity
-                },
-                visibility: {
-                    services: true,
-                    features: true,
-                    contact: true
-                },
-                content: {
-                    brandName: 'Abhay Cyber Zone',
-                    heroBadge: '#1 Digital Service Provider in Biraul',
-                    heroTitle: 'Fast & Trusted <br class="hidden md:block" /> Online Services',
-                    heroTagline: 'All digital services available at one place with fast processing and trusted support. We handle the paperwork, so you can focus on your business.',
-                    s1Icon: 'fa-solid fa-file-invoice-dollar',
-                    s1Title: 'GST Registration',
-                    s1Desc: 'Complete GST registration and hassle-free return filing services for your business compliance.',
-                    s2Icon: 'fa-regular fa-id-card',
-                    s2Title: 'PAN Card Service',
-                    s2Desc: 'Apply for a new PAN card or quickly update existing details with our fast-track processing.',
-                    s3Icon: 'fa-solid fa-utensils',
-                    s3Title: 'FSSAI Licence',
-                    s3Desc: 'Get your food business officially registered with the mandatory FSSAI certification quickly.',
-                    s4Icon: 'fa-solid fa-industry',
-                    s4Title: 'Udyam Registration',
-                    s4Desc: 'Register your MSME effortlessly with us to avail all government benefits and subsidies.',
-                    linkWA: '919102288372',
-                    textPhone: '+91 91022 88372',
-                    textAddress: 'Biraul, Bihar'
-                }
-            };
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
 
-            let siteData = JSON.parse(localStorage.getItem('abhayCMSDataV2')) || JSON.parse(JSON.stringify(defaultCMSData));
-
-            // Setup DOM Binders
-            const BINDERS = {
-                'cms-brand-name': 'brandName',
-                'cms-footer-brand': 'brandName',
-                'cms-hero-badge': 'heroBadge',
-                'cms-hero-title': 'heroTitle',
-                'cms-hero-tagline': 'heroTagline',
-                'cms-s1-title': 's1Title', 'cms-s1-desc': 's1Desc',
-                'cms-s2-title': 's2Title', 'cms-s2-desc': 's2Desc',
-                'cms-s3-title': 's3Title', 'cms-s3-desc': 's3Desc',
-                'cms-s4-title': 's4Title', 'cms-s4-desc': 's4Desc',
-                'cms-phone-text': 'textPhone',
-                'cms-wa-text': 'textPhone',
-                'cms-address-text': 'textAddress'
-            };
-
-            const ICON_BINDERS = {
-                'cms-s1-icon': 's1Icon',
-                'cms-s2-icon': 's2Icon',
-                'cms-s3-icon': 's3Icon',
-                'cms-s4-icon': 's4Icon'
-            };
-
-            // Render Function (Updates Website UI based on siteData)
-            function renderWebsite() {
-                // 1. Theme (Accent Color & Background Overlay)
-                document.documentElement.style.setProperty('--ios-accent', siteData.theme.primaryColor);
-                document.documentElement.style.setProperty('--ios-accent-rgb', hexToRgb(siteData.theme.primaryColor));
-                
-                const overlay = document.getElementById('dynamic-overlay');
-                if(overlay) overlay.style.background = `rgba(0,0,0,${siteData.theme.mode})`;
-
-                // 2. Visibility Toggles
-                document.getElementById('services').style.display = siteData.visibility.services ? 'block' : 'none';
-                document.querySelectorAll('.nav-services').forEach(e => e.style.display = siteData.visibility.services ? 'block' : 'none');
-                
-                document.getElementById('features').style.display = siteData.visibility.features ? 'block' : 'none';
-                document.querySelectorAll('.nav-features').forEach(e => e.style.display = siteData.visibility.features ? 'block' : 'none');
-                
-                document.getElementById('contact').style.display = siteData.visibility.contact ? 'block' : 'none';
-                document.querySelectorAll('.nav-contact').forEach(e => e.style.display = siteData.visibility.contact ? 'block' : 'none');
-
-                // 3. Text Content
-                for (const [id, key] of Object.entries(BINDERS)) {
-                    const el = document.getElementById(id);
-                    if (el) el.innerHTML = siteData.content[key];
-                }
-
-                // 4. Icons
-                for (const [id, key] of Object.entries(ICON_BINDERS)) {
-                    const el = document.getElementById(id);
-                    if (el) el.className = siteData.content[key];
-                }
-
-                // 5. Links
-                const waLink = `https://wa.me/${siteData.content.linkWA}`;
-                document.getElementById('cms-hero-wa').href = waLink;
-                document.getElementById('cms-contact-wa').href = waLink;
-                document.getElementById('cms-floating-wa').href = waLink;
-                
-                const cleanPhone = siteData.content.textPhone.replace(/[^0-9+]/g, '');
-                document.getElementById('cms-nav-call').href = `tel:${cleanPhone}`;
-                document.getElementById('cms-contact-call').href = `tel:${cleanPhone}`;
-            }
-
-            renderWebsite();
-
-            // --- Hidden Trigger Logic (5 Clicks) ---
-            let clickCount = 0;
-            let clickTimer = null;
-            const logoTrigger = document.getElementById('logo-trigger');
-            const loginModal = document.getElementById('admin-login-modal');
-            const loginBox = document.getElementById('admin-login-box');
-            const dashboard = document.getElementById('admin-dashboard');
-
-            logoTrigger.addEventListener('click', (e) => {
-                e.preventDefault();
-                clickCount++;
-                if (clickCount >= 5) {
-                    showLoginModal();
-                    clickCount = 0;
-                }
-                clearTimeout(clickTimer);
-                clickTimer = setTimeout(() => { clickCount = 0; }, 2000);
-            });
-
-            function showLoginModal() {
-                loginModal.classList.remove('hidden');
-                setTimeout(() => {
-                    loginModal.classList.remove('opacity-0');
-                    loginBox.classList.remove('scale-95');
-                }, 10);
-            }
-
-            function hideLoginModal() {
-                loginModal.classList.add('opacity-0');
-                loginBox.classList.add('scale-95');
-                setTimeout(() => {
-                    loginModal.classList.add('hidden');
-                    document.getElementById('login-error').classList.add('hidden');
-                    document.getElementById('admin-id').value = '';
-                    document.getElementById('admin-pwd').value = '';
-                }, 500);
-            }
-
-            document.getElementById('btn-close-login').addEventListener('click', hideLoginModal);
-
-            // --- Authentication ---
-            document.getElementById('btn-login').addEventListener('click', () => {
-                const id = document.getElementById('admin-id').value;
-                const pwd = document.getElementById('admin-pwd').value;
-
-                if (id === 'Abhay@#kumar*372' && pwd === 'Abhay@kumar372#') {
-                    hideLoginModal();
-                    setTimeout(openDashboard, 400); // Wait for modal to close
-                } else {
-                    document.getElementById('login-error').classList.remove('hidden');
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
                 }
             });
+        }, observerOptions);
 
-
-            // --- Dashboard Logic ---
-            const INPUT_MAP = {
-                'in-color-primary': { type: 'theme', key: 'primaryColor' },
-                'in-theme-mode': { type: 'theme', key: 'mode' },
-                'in-vis-services': { type: 'vis', key: 'services' },
-                'in-vis-features': { type: 'vis', key: 'features' },
-                'in-vis-contact': { type: 'vis', key: 'contact' },
-                'in-brand-name': { type: 'content', key: 'brandName' },
-                'in-hero-badge': { type: 'content', key: 'heroBadge' },
-                'in-hero-title': { type: 'content', key: 'heroTitle' },
-                'in-hero-tagline': { type: 'content', key: 'heroTagline' },
-                'in-s1-icon': { type: 'content', key: 's1Icon' }, 'in-s1-title': { type: 'content', key: 's1Title' }, 'in-s1-desc': { type: 'content', key: 's1Desc' },
-                'in-s2-icon': { type: 'content', key: 's2Icon' }, 'in-s2-title': { type: 'content', key: 's2Title' }, 'in-s2-desc': { type: 'content', key: 's2Desc' },
-                'in-s3-icon': { type: 'content', key: 's3Icon' }, 'in-s3-title': { type: 'content', key: 's3Title' }, 'in-s3-desc': { type: 'content', key: 's3Desc' },
-                'in-s4-icon': { type: 'content', key: 's4Icon' }, 'in-s4-title': { type: 'content', key: 's4Title' }, 'in-s4-desc': { type: 'content', key: 's4Desc' },
-                'in-link-wa': { type: 'content', key: 'linkWA' },
-                'in-text-phone': { type: 'content', key: 'textPhone' },
-                'in-text-address': { type: 'content', key: 'textAddress' }
-            };
-
-            function populateDashboard() {
-                for (const [inputId, path] of Object.entries(INPUT_MAP)) {
-                    const el = document.getElementById(inputId);
-                    if (!el) continue;
-                    
-                    const val = siteData[path.type][path.key];
-                    if (el.type === 'checkbox') {
-                        el.checked = val;
-                    } else {
-                        el.value = val;
-                    }
-                    
-                    if(inputId === 'in-color-primary') {
-                        document.getElementById('in-color-primary-text').value = val;
-                    }
-                }
-            }
-
-            function setupLivePreview() {
-                for (const [inputId, path] of Object.entries(INPUT_MAP)) {
-                    const el = document.getElementById(inputId);
-                    if (!el) continue;
-
-                    el.addEventListener('input', (e) => {
-                        let val = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
-                        siteData[path.type][path.key] = val;
-                        
-                        if(inputId === 'in-color-primary') {
-                            document.getElementById('in-color-primary-text').value = val;
-                        } else if (inputId === 'in-color-primary-text') {
-                            document.getElementById('in-color-primary').value = val;
-                            siteData.theme.primaryColor = val;
-                        }
-
-                        renderWebsite();
-                    });
-                }
-
-                document.getElementById('in-color-primary-text').addEventListener('input', (e) => {
-                    const val = e.target.value;
-                    if(/^#[0-9A-F]{6}$/i.test(val)){
-                        document.getElementById('in-color-primary').value = val;
-                        siteData.theme.primaryColor = val;
-                        renderWebsite();
-                    }
-                });
-            }
-
-            function openDashboard() {
-                dashboard.classList.remove('hidden');
-                populateDashboard();
-                setupLivePreview();
-                setTimeout(() => {
-                    dashboard.classList.remove('opacity-0', 'scale-105');
-                }, 10);
-            }
-
-            document.getElementById('btn-close-dashboard').addEventListener('click', () => {
-                dashboard.classList.add('opacity-0', 'scale-105');
-                setTimeout(() => dashboard.classList.add('hidden'), 700);
-                
-                const saved = localStorage.getItem('abhayCMSDataV2');
-                siteData = saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(defaultCMSData));
-                renderWebsite();
-            });
-
-            document.getElementById('btn-save-cms').addEventListener('click', (e) => {
-                localStorage.setItem('abhayCMSDataV2', JSON.stringify(siteData));
-                const btn = e.target;
-                const ogHtml = btn.innerHTML;
-                btn.innerHTML = '<i class="fa-solid fa-check mr-2"></i> Saved';
-                btn.style.background = '#34C759'; // iOS Green
-                setTimeout(() => {
-                    btn.innerHTML = ogHtml;
-                    btn.style.background = ''; // Revert to accent
-                }, 2000);
-            });
-
-            document.getElementById('btn-reset-cms').addEventListener('click', () => {
-                if(confirm('Are you sure you want to reset all content and styles to original defaults?')) {
-                    siteData = JSON.parse(JSON.stringify(defaultCMSData));
-                    populateDashboard();
-                    renderWebsite();
-                }
-            });
-
-            // Dashboard Tabs Logic
-            document.querySelectorAll('.cms-tab-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    document.querySelectorAll('.cms-tab-btn').forEach(b => {
-                        b.classList.remove('bg-white/10', 'text-white');
-                        b.classList.add('text-white/70');
-                    });
-                    
-                    const current = e.currentTarget;
-                    current.classList.remove('text-white/70');
-                    current.classList.add('bg-white/10', 'text-white');
-
-                    document.querySelectorAll('.cms-tab-content').forEach(c => c.classList.add('hidden'));
-                    const targetId = current.getAttribute('data-target');
-                    document.getElementById(targetId).classList.remove('hidden');
-                });
-            });
+        document.querySelectorAll('.ios-fade-up').forEach(el => {
+            observer.observe(el);
         });
     </script>
 </body>
 </html>
-
 
