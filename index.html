@@ -4,12 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abhay Cyber Zone Biraul | Fast & Trusted Online Services</title>
-    <meta name="description" content="All digital services available at one place with fast processing and trusted support. GST, PAN, FSSAI, Udyam Registration and more.">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta name="description" content="All digital services available at one place with fast processing and trusted support.">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -18,287 +13,391 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* Dynamic Theme Variables controlled by CMS */
+        /* Apple System Typography & Core Variables */
         :root {
-            --color-primary: #2563eb;
-            --color-secondary: #4f46e5;
+            --ios-accent: #0A84FF; /* iOS Blue */
+            --ios-overlay: rgba(0, 0, 0, 0.6);
+            --ios-bezier: cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        /* Custom Animations */
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, "Segoe UI", Roboto, Ubuntu, sans-serif;
+            background-color: #000;
+            color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
         }
-        .fade-in-up.visible {
-            opacity: 1;
-            transform: translateY(0);
+
+        /* Fullscreen Background Setup */
+        .bg-system {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: url('background.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -2;
         }
         
-        .glass {
-            background: rgba(255, 255, 255, 0.7);
+        .bg-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: var(--ios-overlay);
+            z-index: -1;
+            transition: background 0.5s var(--ios-bezier);
+        }
+
+        /* Glassmorphism Classes */
+        .ios-glass {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+        }
+
+        .ios-glass-heavy {
+            background: rgba(30, 30, 30, 0.65);
+            backdrop-filter: blur(35px);
+            -webkit-backdrop-filter: blur(35px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border-radius: 24px;
+        }
+
+        .ios-glass-nav {
+            background: rgba(20, 20, 20, 0.5);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Micro-Interactions & Animations */
+        .ios-btn {
+            transition: all 0.4s var(--ios-bezier);
+            cursor: pointer;
+            border-radius: 9999px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .ios-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .ios-btn:active {
+            transform: scale(0.96);
+            opacity: 0.8;
+        }
+
+        .ios-btn-primary {
+            background-color: var(--ios-accent);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(var(--ios-accent-rgb), 0.4);
+        }
+
+        .ios-card {
+            transition: all 0.5s var(--ios-bezier);
+        }
+        .ios-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Inputs */
+        .ios-input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 14px;
+            transition: all 0.3s var(--ios-bezier);
+        }
+        .ios-input:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--ios-accent);
+            box-shadow: 0 0 0 4px rgba(10, 132, 255, 0.2);
+            outline: none;
+        }
+        .ios-input::placeholder { color: rgba(255, 255, 255, 0.5); }
+
+        /* Scroll Animation Utility */
+        .ios-fade-up {
+            opacity: 0;
+            transform: translateY(30px) scale(0.98);
+            transition: all 0.7s var(--ios-bezier);
+        }
+        .ios-fade-up.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
         }
 
-        .bg-gradient-soft {
-            background: linear-gradient(135deg, var(--bg-color-1, #f0fdfa) 0%, var(--bg-color-2, #e0e7ff) 100%);
-        }
-
-        /* Admin Panel Scrollbar */
+        /* Custom Scrollbar for Admin */
         .admin-scroll::-webkit-scrollbar { width: 6px; }
-        .admin-scroll::-webkit-scrollbar-track { background: #f1f1f1; rounded: 8px;}
-        .admin-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
-        .admin-scroll::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-    </style>
+        .admin-scroll::-webkit-scrollbar-track { background: transparent; }
+        .admin-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
+        .admin-scroll::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.4); }
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
-                    colors: {
-                        primary: 'var(--color-primary)', 
-                        secondary: 'var(--color-secondary)',
-                        whatsapp: '#25D366',
-                    }
-                }
-            }
+        /* Text Utilities */
+        .text-gradient {
+            background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.6) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-    </script>
+    </style>
 </head>
-<body class="font-sans text-gray-800 antialiased bg-gray-50 flex flex-col min-h-screen relative" id="body-bg">
+<body>
+
+    <!-- Background Elements -->
+    <div class="bg-system"></div>
+    <div class="bg-overlay" id="dynamic-overlay"></div>
 
     <!-- Sticky Navigation -->
-    <nav class="fixed w-full z-40 transition-all duration-300 glass" id="navbar">
+    <nav class="fixed w-full z-40 transition-all duration-500 ios-glass-nav" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <!-- Logo (CMS TRIGGER) -->
-                <div class="flex-shrink-0 flex items-center cursor-pointer select-none" id="logo-trigger" title="Abhay Cyber Zone">
-                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl mr-3 shadow-lg transition-colors duration-300">
-                        <i class="fa-solid fa-bolt"></i>
+                
+                <!-- Logo & Trigger -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer select-none group" id="logo-trigger" title="Abhay Cyber Zone">
+                    <!-- Apple style smooth rounded logo wrapper -->
+                    <div class="w-11 h-11 rounded-[12px] bg-white/10 flex items-center justify-center mr-3 shadow-sm border border-white/10 overflow-hidden transition-transform duration-300 group-active:scale-95">
+                        <!-- Using required logo.png -->
+                        <img src="logo.png" alt="Logo" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <i class="fa-solid fa-bolt text-white text-xl hidden" style="display: none;"></i>
                     </div>
                     <div>
-                        <h1 class="font-bold text-xl leading-tight text-gray-900" id="cms-brand-name">Abhay Cyber Zone</h1>
-                        <p class="text-xs text-primary font-medium tracking-wide" id="cms-brand-sub">Biraul</p>
+                        <h1 class="font-semibold text-xl leading-tight text-white tracking-tight" id="cms-brand-name">Abhay Cyber Zone</h1>
+                        <p class="text-[11px] text-white/60 font-medium tracking-wide uppercase mt-0.5" id="cms-brand-sub" style="color: var(--ios-accent)">Biraul</p>
                     </div>
                 </div>
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="text-gray-600 hover:text-primary font-medium transition">Home</a>
-                    <a href="#services" class="text-gray-600 hover:text-primary font-medium transition nav-services">Services</a>
-                    <a href="#features" class="text-gray-600 hover:text-primary font-medium transition nav-features">Features</a>
-                    <a href="#contact" class="text-gray-600 hover:text-primary font-medium transition nav-contact">Contact</a>
-                    <a href="tel:+919102288372" id="cms-nav-call" class="bg-primary hover:opacity-90 text-white px-5 py-2.5 rounded-full font-medium transition shadow-md hover:shadow-lg flex items-center">
-                        <i class="fa-solid fa-phone mr-2"></i> Call Now
+                    <a href="#home" class="text-white/80 hover:text-white font-medium transition-colors text-sm">Home</a>
+                    <a href="#services" class="text-white/80 hover:text-white font-medium transition-colors text-sm nav-services">Services</a>
+                    <a href="#features" class="text-white/80 hover:text-white font-medium transition-colors text-sm nav-features">Features</a>
+                    <a href="#contact" class="text-white/80 hover:text-white font-medium transition-colors text-sm nav-contact">Contact</a>
+                    <a href="tel:+919102288372" id="cms-nav-call" class="ios-btn ios-btn-primary px-5 py-2.5 text-sm">
+                        <i class="fa-solid fa-phone mr-2 text-xs"></i> Call Now
                     </a>
                 </div>
 
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-primary focus:outline-none">
+                    <button id="mobile-menu-btn" class="text-white/80 hover:text-white focus:outline-none transition-transform active:scale-90">
                         <i class="fa-solid fa-bars text-2xl"></i>
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 shadow-lg absolute w-full left-0">
-            <div class="px-4 pt-2 pb-6 space-y-2">
-                <a href="#home" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-blue-50">Home</a>
-                <a href="#services" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-blue-50 nav-services">Services</a>
-                <a href="#features" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-blue-50 nav-features">Features</a>
-                <a href="#contact" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-blue-50 nav-contact">Contact</a>
+        <!-- Mobile Menu (Glass) -->
+        <div id="mobile-menu" class="hidden md:hidden absolute w-full left-0 top-20 ios-glass border-t-0 border-x-0 rounded-none border-b border-white/10">
+            <div class="px-4 py-4 space-y-1">
+                <a href="#home" class="block px-4 py-3 rounded-xl text-base font-medium text-white hover:bg-white/10 transition">Home</a>
+                <a href="#services" class="block px-4 py-3 rounded-xl text-base font-medium text-white hover:bg-white/10 transition nav-services">Services</a>
+                <a href="#features" class="block px-4 py-3 rounded-xl text-base font-medium text-white hover:bg-white/10 transition nav-features">Features</a>
+                <a href="#contact" class="block px-4 py-3 rounded-xl text-base font-medium text-white hover:bg-white/10 transition nav-contact">Contact</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-gradient-soft transition-colors duration-500">
-        <div class="absolute top-0 left-0 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-        <div class="absolute top-0 right-0 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob" style="animation-delay: 2s"></div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold mb-6 animate-fade-in-up" id="cms-hero-badge">
+    <section id="home" class="relative pt-32 pb-20 lg:pt-56 lg:pb-40 overflow-hidden flex flex-col justify-center min-h-[90vh]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center w-full">
+            <span class="inline-block py-1.5 px-4 rounded-full ios-glass border border-white/20 text-white/90 text-xs font-semibold tracking-wide uppercase mb-6 ios-fade-up shadow-lg" id="cms-hero-badge">
                 #1 Digital Service Provider in Biraul
             </span>
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 tracking-tight mb-6 animate-fade-in-up" style="animation-delay: 0.1s;" id="cms-hero-title">
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 ios-fade-up text-gradient" style="transition-delay: 0.1s;" id="cms-hero-title">
                 Fast & Trusted <br class="hidden md:block" /> 
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Online Services</span>
+                Online Services
             </h1>
-            <p class="mt-4 text-xl text-gray-600 max-w-2xl mx-auto mb-10 animate-fade-in-up" style="animation-delay: 0.2s;" id="cms-hero-tagline">
+            <p class="mt-4 text-lg md:text-xl text-white/70 max-w-2xl mx-auto mb-12 ios-fade-up font-normal leading-relaxed" style="transition-delay: 0.2s;" id="cms-hero-tagline">
                 All digital services available at one place with fast processing and trusted support. We handle the paperwork, so you can focus on your business.
             </p>
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 animate-fade-in-up" style="animation-delay: 0.3s;">
-                <a href="#contact" class="w-full sm:w-auto px-8 py-4 bg-primary hover:opacity-90 text-white rounded-full font-semibold text-lg transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 ios-fade-up" style="transition-delay: 0.3s;">
+                <a href="#contact" class="w-full sm:w-auto px-8 py-3.5 ios-btn ios-btn-primary text-base">
                     Contact Now
                 </a>
-                <a href="https://wa.me/919102288372" target="_blank" id="cms-hero-wa" class="w-full sm:w-auto px-8 py-4 bg-white border-2 border-gray-200 hover:border-whatsapp text-gray-800 hover:text-whatsapp rounded-full font-semibold text-lg transition-all shadow-sm hover:shadow-md flex items-center justify-center group">
-                    <i class="fa-brands fa-whatsapp text-xl mr-2 text-whatsapp group-hover:scale-110 transition-transform"></i> WhatsApp Us
+                <a href="https://wa.me/919102288372" target="_blank" id="cms-hero-wa" class="w-full sm:w-auto px-8 py-3.5 ios-btn ios-glass text-white text-base hover:text-[#25D366] group">
+                    <i class="fa-brands fa-whatsapp text-lg mr-2 transition-colors group-hover:text-[#25D366]"></i> WhatsApp Us
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-20 bg-white section-toggle">
+    <section id="services" class="py-24 relative section-toggle">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 fade-in-up">
-                <h2 class="text-primary font-semibold tracking-wide uppercase text-sm mb-2">What We Do</h2>
-                <h3 class="text-3xl md:text-4xl font-bold text-gray-900">Our Premium Services</h3>
-                <div class="w-20 h-1 bg-primary mx-auto mt-4 rounded"></div>
+            <div class="text-center mb-16 ios-fade-up">
+                <h2 class="font-semibold tracking-widest uppercase text-xs mb-3" style="color: var(--ios-accent)">What We Do</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-white tracking-tight">Our Premium Services</h3>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Service 1 -->
-                <div class="glass p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 fade-in-up group">
-                    <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-primary text-2xl mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- S1 -->
+                <div class="ios-glass ios-card p-8 ios-fade-up">
+                    <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm border border-white/10" style="background: rgba(255,255,255,0.1); color: var(--ios-accent)">
                         <i class="fa-solid fa-file-invoice-dollar" id="cms-s1-icon"></i>
                     </div>
-                    <h4 class="text-xl font-bold text-gray-900 mb-3" id="cms-s1-title">GST Registration</h4>
-                    <p class="text-gray-600 leading-relaxed" id="cms-s1-desc">Complete GST registration and hassle-free return filing services for your business compliance.</p>
+                    <h4 class="text-xl font-semibold text-white mb-3 tracking-tight" id="cms-s1-title">GST Registration</h4>
+                    <p class="text-white/60 text-sm leading-relaxed" id="cms-s1-desc">Complete GST registration and hassle-free return filing services for your business compliance.</p>
                 </div>
 
-                <!-- Service 2 -->
-                <div class="glass p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 fade-in-up group" style="transition-delay: 0.1s;">
-                    <div class="w-14 h-14 bg-indigo-50 rounded-xl flex items-center justify-center text-secondary text-2xl mb-6 group-hover:bg-secondary group-hover:text-white transition-colors">
+                <!-- S2 -->
+                <div class="ios-glass ios-card p-8 ios-fade-up" style="transition-delay: 0.1s;">
+                    <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm border border-white/10" style="background: rgba(255,255,255,0.1); color: var(--ios-accent)">
                         <i class="fa-regular fa-id-card" id="cms-s2-icon"></i>
                     </div>
-                    <h4 class="text-xl font-bold text-gray-900 mb-3" id="cms-s2-title">PAN Card Service</h4>
-                    <p class="text-gray-600 leading-relaxed" id="cms-s2-desc">Apply for a new PAN card or quickly update existing details with our fast-track processing.</p>
+                    <h4 class="text-xl font-semibold text-white mb-3 tracking-tight" id="cms-s2-title">PAN Card Service</h4>
+                    <p class="text-white/60 text-sm leading-relaxed" id="cms-s2-desc">Apply for a new PAN card or quickly update existing details with our fast-track processing.</p>
                 </div>
 
-                <!-- Service 3 -->
-                <div class="glass p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 fade-in-up group" style="transition-delay: 0.2s;">
-                    <div class="w-14 h-14 bg-green-50 rounded-xl flex items-center justify-center text-green-600 text-2xl mb-6 group-hover:bg-green-600 group-hover:text-white transition-colors">
+                <!-- S3 -->
+                <div class="ios-glass ios-card p-8 ios-fade-up" style="transition-delay: 0.2s;">
+                    <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm border border-white/10" style="background: rgba(255,255,255,0.1); color: var(--ios-accent)">
                         <i class="fa-solid fa-utensils" id="cms-s3-icon"></i>
                     </div>
-                    <h4 class="text-xl font-bold text-gray-900 mb-3" id="cms-s3-title">FSSAI Licence</h4>
-                    <p class="text-gray-600 leading-relaxed" id="cms-s3-desc">Get your food business officially registered with the mandatory FSSAI certification quickly.</p>
+                    <h4 class="text-xl font-semibold text-white mb-3 tracking-tight" id="cms-s3-title">FSSAI Licence</h4>
+                    <p class="text-white/60 text-sm leading-relaxed" id="cms-s3-desc">Get your food business officially registered with the mandatory FSSAI certification quickly.</p>
                 </div>
 
-                <!-- Service 4 -->
-                <div class="glass p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 fade-in-up group" style="transition-delay: 0.3s;">
-                    <div class="w-14 h-14 bg-orange-50 rounded-xl flex items-center justify-center text-orange-600 text-2xl mb-6 group-hover:bg-orange-600 group-hover:text-white transition-colors">
+                <!-- S4 -->
+                <div class="ios-glass ios-card p-8 ios-fade-up" style="transition-delay: 0.3s;">
+                    <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm border border-white/10" style="background: rgba(255,255,255,0.1); color: var(--ios-accent)">
                         <i class="fa-solid fa-industry" id="cms-s4-icon"></i>
                     </div>
-                    <h4 class="text-xl font-bold text-gray-900 mb-3" id="cms-s4-title">Udyam Registration</h4>
-                    <p class="text-gray-600 leading-relaxed" id="cms-s4-desc">Register your MSME effortlessly with us to avail all government benefits and subsidies.</p>
+                    <h4 class="text-xl font-semibold text-white mb-3 tracking-tight" id="cms-s4-title">Udyam Registration</h4>
+                    <p class="text-white/60 text-sm leading-relaxed" id="cms-s4-desc">Register your MSME effortlessly with us to avail all government benefits and subsidies.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="py-20 bg-gray-50 relative section-toggle transition-colors duration-500">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="features" class="py-24 relative section-toggle">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row gap-16 items-center">
-                <div class="w-full lg:w-1/2 fade-in-up">
-                    <h2 class="text-primary font-semibold tracking-wide uppercase text-sm mb-2">Why Choose Us</h2>
-                    <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Built on Trust & Efficiency</h3>
-                    <p class="text-gray-600 text-lg mb-8 leading-relaxed">
-                        At Abhay Cyber Zone, we understand that your time is valuable. We eliminate the red tape and long queues, providing you with a seamless digital service experience right here in Biraul.
+                
+                <div class="w-full lg:w-1/2 ios-fade-up">
+                    <h2 class="font-semibold tracking-widest uppercase text-xs mb-3" style="color: var(--ios-accent)">Why Choose Us</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">Built on Trust & Efficiency</h3>
+                    <p class="text-white/70 text-lg mb-10 leading-relaxed font-light">
+                        At Abhay Cyber Zone, we understand your time is valuable. We eliminate the red tape and long queues, providing a seamless digital service experience right here in Biraul.
                     </p>
                     
-                    <div class="space-y-6">
+                    <div class="space-y-8">
                         <div class="flex items-start">
-                            <div class="flex-shrink-0 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md text-primary"><i class="fa-solid fa-bolt text-xl"></i></div>
-                            <div class="ml-4">
-                                <h4 class="text-lg font-bold text-gray-900">Fast Processing</h4>
-                                <p class="text-gray-600 mt-1">Quick turnaround times for all your crucial documents.</p>
+                            <div class="flex-shrink-0 w-12 h-12 ios-glass rounded-xl flex items-center justify-center text-xl" style="color: var(--ios-accent)">
+                                <i class="fa-solid fa-bolt"></i>
+                            </div>
+                            <div class="ml-5">
+                                <h4 class="text-lg font-semibold text-white tracking-tight">Fast Processing</h4>
+                                <p class="text-white/60 text-sm mt-1 leading-relaxed">Quick turnaround times for all your crucial documents.</p>
                             </div>
                         </div>
                         <div class="flex items-start">
-                            <div class="flex-shrink-0 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md text-primary"><i class="fa-solid fa-shield-halved text-xl"></i></div>
-                            <div class="ml-4">
-                                <h4 class="text-lg font-bold text-gray-900">Trusted Service</h4>
-                                <p class="text-gray-600 mt-1">100% secure handling of your personal data.</p>
+                            <div class="flex-shrink-0 w-12 h-12 ios-glass rounded-xl flex items-center justify-center text-xl" style="color: var(--ios-accent)">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <div class="ml-5">
+                                <h4 class="text-lg font-semibold text-white tracking-tight">Trusted Service</h4>
+                                <p class="text-white/60 text-sm mt-1 leading-relaxed">100% secure handling of your personal and business data.</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="w-full lg:w-1/2 fade-in-up">
-                    <div class="relative rounded-2xl overflow-hidden shadow-2xl">
-                        <div class="aspect-w-4 aspect-h-3 bg-gradient-to-br from-primary to-secondary p-8 flex items-center justify-center min-h-[400px]" id="feature-image-bg">
-                             <div class="glass p-8 rounded-xl text-center text-white max-w-sm">
-                                 <i class="fa-solid fa-check-circle text-5xl mb-4 text-green-300"></i>
-                                 <h4 class="text-2xl font-bold mb-2">1000+</h4>
-                                 <p class="text-blue-100">Satisfied Clients in Biraul & Surrounding Areas</p>
-                             </div>
+
+                <div class="w-full lg:w-1/2 ios-fade-up" style="transition-delay: 0.2s;">
+                    <div class="ios-glass p-2 rounded-[28px]">
+                        <div class="rounded-[20px] overflow-hidden relative aspect-square md:aspect-video lg:aspect-square flex items-center justify-center bg-black/20">
+                            <!-- Soft internal glow element -->
+                            <div class="absolute w-64 h-64 rounded-full blur-[80px] opacity-40" style="background: var(--ios-accent)"></div>
+                            
+                            <div class="ios-glass p-8 rounded-[24px] text-center max-w-sm z-10 border border-white/20">
+                                <i class="fa-solid fa-check-circle text-5xl mb-5" style="color: var(--ios-accent)"></i>
+                                <h4 class="text-4xl font-bold mb-2 text-white">1000+</h4>
+                                <p class="text-white/70 text-sm font-medium uppercase tracking-wide">Satisfied Clients</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-white section-toggle">
+    <section id="contact" class="py-24 relative section-toggle">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 fade-in-up">
-                <h2 class="text-primary font-semibold tracking-wide uppercase text-sm mb-2">Get In Touch</h2>
-                <h3 class="text-3xl md:text-4xl font-bold text-gray-900">Ready to Get Started?</h3>
-                <div class="w-20 h-1 bg-primary mx-auto mt-4 rounded"></div>
+            <div class="text-center mb-16 ios-fade-up">
+                <h2 class="font-semibold tracking-widest uppercase text-xs mb-3" style="color: var(--ios-accent)">Get In Touch</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-white tracking-tight">Ready to Get Started?</h3>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden fade-in-up">
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 ios-fade-up">
                 
-                <!-- Contact Info -->
-                <div class="bg-gradient-to-br from-primary to-secondary p-10 lg:p-12 text-white flex flex-col justify-between transition-colors duration-500">
-                    <div>
-                        <h4 class="text-2xl font-bold mb-6">Contact Information</h4>
-                        <div class="space-y-6">
-                            <a href="tel:+919102288372" id="cms-contact-call" class="flex items-center text-white hover:text-blue-200 transition-colors group">
-                                <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 group-hover:bg-white/30 transition">
-                                    <i class="fa-solid fa-phone text-xl"></i>
+                <!-- Contact Info (Spans 2 cols) -->
+                <div class="lg:col-span-2 ios-glass p-10 rounded-[28px] flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute -top-24 -right-24 w-48 h-48 rounded-full blur-[60px] opacity-30" style="background: var(--ios-accent)"></div>
+                    
+                    <div class="relative z-10">
+                        <h4 class="text-2xl font-bold text-white mb-8 tracking-tight">Contact Information</h4>
+                        <div class="space-y-8">
+                            <a href="tel:+919102288372" id="cms-contact-call" class="flex items-center text-white/80 hover:text-white transition-colors group">
+                                <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mr-5 group-hover:bg-white/20 transition duration-300">
+                                    <i class="fa-solid fa-phone text-lg"></i>
                                 </div>
                                 <div>
-                                    <p class="text-sm text-blue-200">Call Us Directly</p>
-                                    <p class="text-lg font-semibold" id="cms-phone-text">+91 91022 88372</p>
+                                    <p class="text-[11px] font-semibold tracking-wider uppercase text-white/50 mb-0.5">Call Us Directly</p>
+                                    <p class="text-lg font-medium tracking-wide text-white" id="cms-phone-text">+91 91022 88372</p>
                                 </div>
                             </a>
                             
-                            <a href="https://wa.me/919102288372" id="cms-contact-wa" target="_blank" class="flex items-center text-white hover:text-blue-200 transition-colors group">
-                                <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4 group-hover:bg-white/30 transition">
-                                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                            <a href="https://wa.me/919102288372" id="cms-contact-wa" target="_blank" class="flex items-center text-white/80 hover:text-white transition-colors group">
+                                <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mr-5 group-hover:bg-[#25D366]/30 transition duration-300">
+                                    <i class="fa-brands fa-whatsapp text-lg"></i>
                                 </div>
                                 <div>
-                                    <p class="text-sm text-blue-200">Chat on WhatsApp</p>
-                                    <p class="text-lg font-semibold" id="cms-wa-text">+91 91022 88372</p>
+                                    <p class="text-[11px] font-semibold tracking-wider uppercase text-white/50 mb-0.5">Chat on WhatsApp</p>
+                                    <p class="text-lg font-medium tracking-wide text-white" id="cms-wa-text">+91 91022 88372</p>
                                 </div>
                             </a>
 
-                            <div class="flex items-center text-white group">
-                                <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4">
-                                    <i class="fa-solid fa-location-dot text-xl"></i>
+                            <div class="flex items-center text-white/80">
+                                <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mr-5">
+                                    <i class="fa-solid fa-location-dot text-lg"></i>
                                 </div>
                                 <div>
-                                    <p class="text-sm text-blue-200">Visit Us</p>
-                                    <p class="text-lg font-semibold" id="cms-address-text">Biraul, Bihar</p>
+                                    <p class="text-[11px] font-semibold tracking-wider uppercase text-white/50 mb-0.5">Visit Us</p>
+                                    <p class="text-lg font-medium tracking-wide text-white" id="cms-address-text">Biraul, Bihar</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Contact Form -->
-                <div class="p-10 lg:p-12">
-                    <h4 class="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h4>
-                    <form id="contactForm" class="space-y-6">
-                        <div>
-                            <input type="text" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Full Name">
+                <!-- Contact Form (Spans 3 cols) -->
+                <div class="lg:col-span-3 ios-glass p-10 rounded-[28px]">
+                    <h4 class="text-2xl font-bold text-white mb-8 tracking-tight">Send us a Message</h4>
+                    <form id="contactForm" class="space-y-5">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <input type="text" required class="ios-input w-full px-5 py-4 text-sm" placeholder="Full Name">
+                            <input type="tel" required class="ios-input w-full px-5 py-4 text-sm" placeholder="Phone Number">
                         </div>
                         <div>
-                            <input type="tel" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Phone Number">
+                            <textarea rows="4" required class="ios-input w-full px-5 py-4 text-sm resize-none" placeholder="Your Message / Requirement"></textarea>
                         </div>
-                        <div>
-                            <textarea rows="4" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all resize-none" placeholder="Your Message / Requirement"></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-primary hover:opacity-90 text-white font-bold py-4 rounded-xl shadow-md transition-all">
-                            Send Message <i class="fa-solid fa-paper-plane ml-2"></i>
+                        <button type="submit" class="w-full ios-btn ios-btn-primary py-4 text-base mt-2 shadow-lg">
+                            Send Message <i class="fa-solid fa-paper-plane ml-2 text-sm"></i>
                         </button>
                     </form>
                 </div>
@@ -307,187 +406,201 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-300 py-12 border-t border-gray-800 mt-auto">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
-            <div class="mb-4 md:mb-0">
-                <h5 class="text-xl font-bold text-white mb-2" id="cms-footer-brand">Abhay Cyber Zone Biraul</h5>
-                <p class="text-sm text-gray-500">&copy; 2024 All rights reserved.</p>
+    <footer class="mt-auto py-10 border-t border-white/10 relative z-10 bg-black/40 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0 text-center md:text-left">
+                <h5 class="text-lg font-semibold text-white/90 tracking-tight" id="cms-footer-brand">Abhay Cyber Zone Biraul</h5>
+                <p class="text-xs text-white/50 mt-1 font-medium">&copy; 2024 All rights reserved.</p>
             </div>
-            <p class="text-sm text-gray-400">Designed for Digital India <i class="fa-solid fa-heart text-red-500 ml-1"></i></p>
+            <p class="text-xs font-medium text-white/50 tracking-wide">Designed for Digital India <i class="fa-solid fa-heart text-red-500/80 ml-1"></i></p>
         </div>
     </footer>
 
     <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/919102288372" id="cms-floating-wa" target="_blank" class="fixed bottom-6 right-6 w-14 h-14 bg-whatsapp text-white rounded-full flex items-center justify-center shadow-2xl hover:bg-green-600 transition-all hover:scale-110 z-30 animate-bounce group" style="animation-duration: 2s;">
+    <a href="https://wa.me/919102288372" id="cms-floating-wa" target="_blank" class="fixed bottom-8 right-8 w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-[0_8px_30px_rgba(37,211,102,0.4)] hover:bg-[#20bd5a] transition-all duration-400 ease-[cubic-bezier(0.25,0.8,0.25,1)] hover:scale-110 active:scale-95 z-30">
         <i class="fa-brands fa-whatsapp text-3xl"></i>
     </a>
 
     <!-- ========================================== -->
-    <!-- 🔐 HIDDEN ADMIN SYSTEM START                 -->
+    <!-- 🔐 macOS/iOS STYLE CMS ADMIN PANEL START     -->
     <!-- ========================================== -->
     
     <!-- Login Modal -->
-    <div id="admin-login-modal" class="fixed inset-0 z-[100] bg-gray-900/80 backdrop-blur-sm hidden flex items-center justify-center opacity-0 transition-opacity duration-300">
-        <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md transform scale-95 transition-transform duration-300" id="admin-login-box">
-            <div class="text-center mb-6">
-                <div class="w-12 h-12 bg-gray-900 text-white rounded-full flex items-center justify-center mx-auto mb-3 text-xl"><i class="fa-solid fa-lock"></i></div>
-                <h3 class="text-2xl font-bold text-gray-900">Admin Access</h3>
-                <p class="text-sm text-gray-500">Secure Content Management System</p>
+    <div id="admin-login-modal" class="fixed inset-0 z-[100] bg-black/60 backdrop-blur-xl hidden flex items-center justify-center opacity-0 transition-opacity duration-500 ease-[cubic-bezier(0.25,0.8,0.25,1)]">
+        <div class="ios-glass-heavy p-10 w-full max-w-sm transform scale-95 transition-transform duration-500 ease-[cubic-bezier(0.25,0.8,0.25,1)]" id="admin-login-box">
+            <div class="text-center mb-8">
+                <div class="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl" style="background: var(--ios-accent); color: white; box-shadow: 0 4px 20px rgba(var(--ios-accent-rgb), 0.5)">
+                    <i class="fa-solid fa-fingerprint"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-white tracking-tight">Admin Access</h3>
+                <p class="text-xs text-white/50 mt-1 font-medium uppercase tracking-widest">Secure CMS</p>
             </div>
             <div class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Ownership ID</label>
-                    <input type="password" id="admin-id" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gray-900 outline-none" placeholder="Enter ID">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                    <input type="password" id="admin-pwd" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gray-900 outline-none" placeholder="Enter Password">
-                </div>
-                <div id="login-error" class="hidden text-red-500 text-sm font-medium text-center">Invalid Credentials!</div>
-                <button id="btn-login" class="w-full bg-gray-900 hover:bg-black text-white font-bold py-3 rounded-lg transition-colors mt-2">Login to Dashboard</button>
-                <button id="btn-close-login" class="w-full text-gray-500 hover:text-gray-800 py-2 text-sm">Cancel</button>
+                <input type="password" id="admin-id" class="ios-input w-full px-4 py-3 text-sm text-center tracking-widest" placeholder="Ownership ID">
+                <input type="password" id="admin-pwd" class="ios-input w-full px-4 py-3 text-sm text-center tracking-widest" placeholder="Password">
+                
+                <div id="login-error" class="hidden text-red-400 text-xs font-semibold text-center mt-2">Authentication Failed</div>
+                
+                <button id="btn-login" class="w-full ios-btn ios-btn-primary py-3.5 mt-6 text-sm">Unlock Dashboard</button>
+                <button id="btn-close-login" class="w-full text-white/50 hover:text-white text-xs font-medium py-2 transition-colors">Cancel</button>
             </div>
         </div>
     </div>
 
     <!-- Admin Dashboard Panel -->
-    <div id="admin-dashboard" class="fixed inset-0 z-[110] bg-gray-100 hidden flex-col transition-transform duration-500 translate-y-full">
+    <div id="admin-dashboard" class="fixed inset-0 z-[110] bg-black/50 backdrop-blur-[40px] hidden flex-col transition-all duration-700 ease-[cubic-bezier(0.25,0.8,0.25,1)] opacity-0 scale-105">
+        
         <!-- Topbar -->
-        <div class="bg-white shadow-sm border-b border-gray-200 h-16 flex items-center justify-between px-6 shrink-0">
+        <div class="h-16 flex items-center justify-between px-6 shrink-0 border-b border-white/10 bg-white/5">
             <div class="flex items-center">
-                <i class="fa-solid fa-screwdriver-wrench text-xl text-primary mr-3"></i>
-                <h2 class="text-xl font-bold text-gray-800">Site Manager <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded ml-2">Live Preview Mode</span></h2>
+                <i class="fa-brands fa-apple text-white/80 text-xl mr-3"></i>
+                <h2 class="text-base font-semibold text-white tracking-wide">System Manager <span class="text-[10px] bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full ml-2 uppercase font-bold tracking-widest border border-green-500/30">Live Mode</span></h2>
             </div>
             <div class="flex space-x-3">
-                <button id="btn-reset-cms" class="px-4 py-2 border border-red-200 text-red-600 hover:bg-red-50 rounded-lg text-sm font-medium transition">Reset Defaults</button>
-                <button id="btn-save-cms" class="px-5 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium shadow transition flex items-center"><i class="fa-solid fa-floppy-disk mr-2"></i> Save Changes</button>
-                <button id="btn-close-dashboard" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg text-sm font-medium transition"><i class="fa-solid fa-xmark mr-1"></i> Close</button>
+                <button id="btn-reset-cms" class="ios-btn px-4 py-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 text-xs font-semibold border border-red-500/20">Reset</button>
+                <button id="btn-save-cms" class="ios-btn ios-btn-primary px-4 py-2 text-xs font-semibold shadow-none"><i class="fa-solid fa-cloud-arrow-up mr-2"></i> Save Settings</button>
+                <button id="btn-close-dashboard" class="ios-btn px-4 py-2 bg-white/10 hover:bg-white/20 text-white text-xs font-semibold"><i class="fa-solid fa-xmark mr-1"></i> Close</button>
             </div>
         </div>
 
         <div class="flex flex-1 overflow-hidden">
             <!-- Sidebar Navigation -->
-            <div class="w-64 bg-white border-r border-gray-200 flex flex-col p-4 space-y-2 shrink-0 admin-scroll overflow-y-auto">
-                <button class="cms-tab-btn active w-full text-left px-4 py-3 rounded-lg font-medium text-primary bg-blue-50 transition" data-target="tab-theme"><i class="fa-solid fa-palette w-6"></i> Theme & Layout</button>
-                <button class="cms-tab-btn w-full text-left px-4 py-3 rounded-lg font-medium text-gray-600 hover:bg-gray-50 transition" data-target="tab-hero"><i class="fa-solid fa-heading w-6"></i> Hero Section</button>
-                <button class="cms-tab-btn w-full text-left px-4 py-3 rounded-lg font-medium text-gray-600 hover:bg-gray-50 transition" data-target="tab-services"><i class="fa-solid fa-layer-group w-6"></i> Services Content</button>
-                <button class="cms-tab-btn w-full text-left px-4 py-3 rounded-lg font-medium text-gray-600 hover:bg-gray-50 transition" data-target="tab-contact"><i class="fa-solid fa-address-book w-6"></i> Contact & Links</button>
+            <div class="w-64 border-r border-white/10 flex flex-col p-4 space-y-2 shrink-0 admin-scroll overflow-y-auto bg-black/20">
+                <p class="text-[10px] font-bold text-white/40 uppercase tracking-widest ml-2 mb-2 mt-2">Preferences</p>
+                
+                <button class="cms-tab-btn active w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-white bg-white/10 transition-colors flex items-center" data-target="tab-theme">
+                    <div class="w-6 h-6 rounded bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center mr-3"><i class="fa-solid fa-palette text-xs text-white"></i></div> Appearance
+                </button>
+                
+                <button class="cms-tab-btn w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-white/70 hover:bg-white/5 transition-colors flex items-center" data-target="tab-hero">
+                    <div class="w-6 h-6 rounded bg-gradient-to-br from-indigo-400 to-purple-600 flex items-center justify-center mr-3"><i class="fa-solid fa-heading text-xs text-white"></i></div> Hero Content
+                </button>
+                
+                <button class="cms-tab-btn w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-white/70 hover:bg-white/5 transition-colors flex items-center" data-target="tab-services">
+                    <div class="w-6 h-6 rounded bg-gradient-to-br from-orange-400 to-red-600 flex items-center justify-center mr-3"><i class="fa-solid fa-layer-group text-xs text-white"></i></div> Services Grid
+                </button>
+                
+                <button class="cms-tab-btn w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-white/70 hover:bg-white/5 transition-colors flex items-center" data-target="tab-contact">
+                    <div class="w-6 h-6 rounded bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center mr-3"><i class="fa-solid fa-address-book text-xs text-white"></i></div> Contact & Links
+                </button>
             </div>
 
             <!-- Content Area -->
-            <div class="flex-1 p-6 overflow-y-auto admin-scroll bg-gray-50">
+            <div class="flex-1 p-8 overflow-y-auto admin-scroll">
                 
                 <!-- Theme Tab -->
-                <div id="tab-theme" class="cms-tab-content block max-w-3xl">
-                    <h3 class="text-lg font-bold mb-4 border-b pb-2">Theme Customization</h3>
-                    <div class="grid grid-cols-2 gap-6 mb-8">
-                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Primary Color</label>
-                            <div class="flex items-center space-x-3">
-                                <input type="color" id="in-color-primary" class="w-10 h-10 rounded cursor-pointer border-0 p-0">
-                                <input type="text" id="in-color-primary-text" class="border rounded px-3 py-2 w-full font-mono text-sm uppercase">
-                            </div>
-                        </div>
-                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Dark Mode Base</label>
-                            <select id="in-theme-mode" class="w-full border rounded px-3 py-2 outline-none">
-                                <option value="light">Light Soft (Default)</option>
-                                <option value="dark">Dark Minimal</option>
-                            </select>
+                <div id="tab-theme" class="cms-tab-content block max-w-2xl mx-auto">
+                    <h3 class="text-2xl font-bold mb-6 text-white tracking-tight">Appearance</h3>
+                    
+                    <div class="ios-glass p-6 mb-8 border border-white/10">
+                        <label class="block text-sm font-medium text-white/80 mb-3">Accent Color (Applies to buttons, icons, highlights)</label>
+                        <div class="flex items-center space-x-4">
+                            <input type="color" id="in-color-primary" class="w-12 h-12 rounded-lg cursor-pointer border-0 p-0 bg-transparent">
+                            <input type="text" id="in-color-primary-text" class="ios-input w-32 px-3 py-2 text-sm font-mono uppercase text-center" placeholder="#0A84FF">
                         </div>
                     </div>
 
-                    <h3 class="text-lg font-bold mb-4 border-b pb-2">Layout & Section Visibility</h3>
-                    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 space-y-4">
-                        <label class="flex items-center space-x-3 cursor-pointer">
-                            <input type="checkbox" id="in-vis-services" class="w-5 h-5 text-primary rounded border-gray-300">
-                            <span class="text-gray-700 font-medium">Show Services Section</span>
+                    <div class="ios-glass p-6 mb-8 border border-white/10">
+                        <label class="block text-sm font-medium text-white/80 mb-3">Background Darkness Overlay</label>
+                        <select id="in-theme-mode" class="ios-input w-full px-4 py-3 text-sm appearance-none">
+                            <option value="0.4" style="color: black;">Light Overlay (40%)</option>
+                            <option value="0.6" style="color: black;">Medium Overlay (60% - Default)</option>
+                            <option value="0.8" style="color: black;">Heavy Overlay (80%)</option>
+                        </select>
+                    </div>
+
+                    <h3 class="text-lg font-bold mb-4 text-white mt-8 border-t border-white/10 pt-6">Section Visibility</h3>
+                    <div class="ios-glass p-6 space-y-5 border border-white/10">
+                        <label class="flex items-center justify-between cursor-pointer group">
+                            <span class="text-white/80 text-sm font-medium group-hover:text-white transition">Show Services Section</span>
+                            <input type="checkbox" id="in-vis-services" class="w-5 h-5 rounded border-white/20 bg-white/10 text-blue-500 focus:ring-0">
                         </label>
-                        <label class="flex items-center space-x-3 cursor-pointer">
-                            <input type="checkbox" id="in-vis-features" class="w-5 h-5 text-primary rounded border-gray-300">
-                            <span class="text-gray-700 font-medium">Show Features Section</span>
+                        <div class="h-px w-full bg-white/10"></div>
+                        <label class="flex items-center justify-between cursor-pointer group">
+                            <span class="text-white/80 text-sm font-medium group-hover:text-white transition">Show Features Section</span>
+                            <input type="checkbox" id="in-vis-features" class="w-5 h-5 rounded border-white/20 bg-white/10 text-blue-500 focus:ring-0">
                         </label>
-                        <label class="flex items-center space-x-3 cursor-pointer">
-                            <input type="checkbox" id="in-vis-contact" class="w-5 h-5 text-primary rounded border-gray-300">
-                            <span class="text-gray-700 font-medium">Show Contact Section</span>
+                        <div class="h-px w-full bg-white/10"></div>
+                        <label class="flex items-center justify-between cursor-pointer group">
+                            <span class="text-white/80 text-sm font-medium group-hover:text-white transition">Show Contact Section</span>
+                            <input type="checkbox" id="in-vis-contact" class="w-5 h-5 rounded border-white/20 bg-white/10 text-blue-500 focus:ring-0">
                         </label>
                     </div>
                 </div>
 
                 <!-- Hero Tab -->
-                <div id="tab-hero" class="cms-tab-content hidden max-w-3xl">
-                    <h3 class="text-lg font-bold mb-4 border-b pb-2">Homepage Text</h3>
-                    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 space-y-5">
+                <div id="tab-hero" class="cms-tab-content hidden max-w-2xl mx-auto">
+                    <h3 class="text-2xl font-bold mb-6 text-white tracking-tight">Hero Content</h3>
+                    <div class="ios-glass p-6 space-y-6 border border-white/10">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Brand Name</label>
-                            <input type="text" id="in-brand-name" class="w-full border rounded px-3 py-2 outline-none focus:border-primary">
+                            <label class="block text-[11px] uppercase tracking-widest text-white/50 mb-2">Brand Name</label>
+                            <input type="text" id="in-brand-name" class="ios-input w-full px-4 py-3 text-sm">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Top Badge Text</label>
-                            <input type="text" id="in-hero-badge" class="w-full border rounded px-3 py-2 outline-none focus:border-primary">
+                            <label class="block text-[11px] uppercase tracking-widest text-white/50 mb-2">Top Badge Text</label>
+                            <input type="text" id="in-hero-badge" class="ios-input w-full px-4 py-3 text-sm">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Main Heading (HTML allowed)</label>
-                            <textarea id="in-hero-title" rows="3" class="w-full border rounded px-3 py-2 outline-none focus:border-primary font-mono text-sm"></textarea>
+                            <label class="block text-[11px] uppercase tracking-widest text-white/50 mb-2">Main Heading (HTML allowed)</label>
+                            <textarea id="in-hero-title" rows="2" class="ios-input w-full px-4 py-3 text-sm font-mono"></textarea>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Tagline</label>
-                            <textarea id="in-hero-tagline" rows="3" class="w-full border rounded px-3 py-2 outline-none focus:border-primary"></textarea>
+                            <label class="block text-[11px] uppercase tracking-widest text-white/50 mb-2">Tagline Description</label>
+                            <textarea id="in-hero-tagline" rows="3" class="ios-input w-full px-4 py-3 text-sm"></textarea>
                         </div>
                     </div>
                 </div>
 
                 <!-- Services Tab -->
-                <div id="tab-services" class="cms-tab-content hidden max-w-4xl">
-                    <h3 class="text-lg font-bold mb-4 border-b pb-2">Manage Services</h3>
+                <div id="tab-services" class="cms-tab-content hidden max-w-4xl mx-auto">
+                    <h3 class="text-2xl font-bold mb-6 text-white tracking-tight">Manage Services</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- S1 -->
-                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 space-y-3">
-                            <div class="font-bold text-gray-800 border-b pb-2 mb-2">Service Card 1</div>
-                            <input type="text" id="in-s1-icon" placeholder="FontAwesome Icon Class (e.g. fa-solid fa-file)" class="w-full border rounded px-3 py-2 text-sm outline-none">
-                            <input type="text" id="in-s1-title" placeholder="Title" class="w-full border rounded px-3 py-2 font-bold outline-none">
-                            <textarea id="in-s1-desc" rows="2" placeholder="Description" class="w-full border rounded px-3 py-2 text-sm outline-none"></textarea>
+                        <div class="ios-glass p-6 border border-white/10 space-y-4">
+                            <div class="text-[10px] font-bold text-white/40 uppercase tracking-widest mb-2">Card 1</div>
+                            <input type="text" id="in-s1-icon" placeholder="FontAwesome Icon (e.g. fa-solid fa-file)" class="ios-input w-full px-4 py-2 text-xs font-mono">
+                            <input type="text" id="in-s1-title" placeholder="Title" class="ios-input w-full px-4 py-3 text-sm font-semibold">
+                            <textarea id="in-s1-desc" rows="2" placeholder="Description" class="ios-input w-full px-4 py-3 text-sm"></textarea>
                         </div>
                         <!-- S2 -->
-                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 space-y-3">
-                            <div class="font-bold text-gray-800 border-b pb-2 mb-2">Service Card 2</div>
-                            <input type="text" id="in-s2-icon" class="w-full border rounded px-3 py-2 text-sm outline-none">
-                            <input type="text" id="in-s2-title" class="w-full border rounded px-3 py-2 font-bold outline-none">
-                            <textarea id="in-s2-desc" rows="2" class="w-full border rounded px-3 py-2 text-sm outline-none"></textarea>
+                        <div class="ios-glass p-6 border border-white/10 space-y-4">
+                            <div class="text-[10px] font-bold text-white/40 uppercase tracking-widest mb-2">Card 2</div>
+                            <input type="text" id="in-s2-icon" class="ios-input w-full px-4 py-2 text-xs font-mono">
+                            <input type="text" id="in-s2-title" class="ios-input w-full px-4 py-3 text-sm font-semibold">
+                            <textarea id="in-s2-desc" rows="2" class="ios-input w-full px-4 py-3 text-sm"></textarea>
                         </div>
                         <!-- S3 -->
-                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 space-y-3">
-                            <div class="font-bold text-gray-800 border-b pb-2 mb-2">Service Card 3</div>
-                            <input type="text" id="in-s3-icon" class="w-full border rounded px-3 py-2 text-sm outline-none">
-                            <input type="text" id="in-s3-title" class="w-full border rounded px-3 py-2 font-bold outline-none">
-                            <textarea id="in-s3-desc" rows="2" class="w-full border rounded px-3 py-2 text-sm outline-none"></textarea>
+                        <div class="ios-glass p-6 border border-white/10 space-y-4">
+                            <div class="text-[10px] font-bold text-white/40 uppercase tracking-widest mb-2">Card 3</div>
+                            <input type="text" id="in-s3-icon" class="ios-input w-full px-4 py-2 text-xs font-mono">
+                            <input type="text" id="in-s3-title" class="ios-input w-full px-4 py-3 text-sm font-semibold">
+                            <textarea id="in-s3-desc" rows="2" class="ios-input w-full px-4 py-3 text-sm"></textarea>
                         </div>
                         <!-- S4 -->
-                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 space-y-3">
-                            <div class="font-bold text-gray-800 border-b pb-2 mb-2">Service Card 4</div>
-                            <input type="text" id="in-s4-icon" class="w-full border rounded px-3 py-2 text-sm outline-none">
-                            <input type="text" id="in-s4-title" class="w-full border rounded px-3 py-2 font-bold outline-none">
-                            <textarea id="in-s4-desc" rows="2" class="w-full border rounded px-3 py-2 text-sm outline-none"></textarea>
+                        <div class="ios-glass p-6 border border-white/10 space-y-4">
+                            <div class="text-[10px] font-bold text-white/40 uppercase tracking-widest mb-2">Card 4</div>
+                            <input type="text" id="in-s4-icon" class="ios-input w-full px-4 py-2 text-xs font-mono">
+                            <input type="text" id="in-s4-title" class="ios-input w-full px-4 py-3 text-sm font-semibold">
+                            <textarea id="in-s4-desc" rows="2" class="ios-input w-full px-4 py-3 text-sm"></textarea>
                         </div>
                     </div>
                 </div>
 
                 <!-- Contact Tab -->
-                <div id="tab-contact" class="cms-tab-content hidden max-w-3xl">
-                    <h3 class="text-lg font-bold mb-4 border-b pb-2">Contact Details & Links</h3>
-                    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 space-y-5">
+                <div id="tab-contact" class="cms-tab-content hidden max-w-2xl mx-auto">
+                    <h3 class="text-2xl font-bold mb-6 text-white tracking-tight">Contact & Links</h3>
+                    <div class="ios-glass p-6 space-y-6 border border-white/10">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">WhatsApp Number (For Links - digits only)</label>
-                            <input type="text" id="in-link-wa" class="w-full border rounded px-3 py-2 outline-none focus:border-primary font-mono">
-                            <p class="text-xs text-gray-500 mt-1">Ex: 919102288372</p>
+                            <label class="block text-[11px] uppercase tracking-widest text-white/50 mb-2">WhatsApp Number (Links - digits only)</label>
+                            <input type="text" id="in-link-wa" class="ios-input w-full px-4 py-3 text-sm font-mono">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Phone Display Text</label>
-                            <input type="text" id="in-text-phone" class="w-full border rounded px-3 py-2 outline-none focus:border-primary">
+                            <label class="block text-[11px] uppercase tracking-widest text-white/50 mb-2">Phone Display Text</label>
+                            <input type="text" id="in-text-phone" class="ios-input w-full px-4 py-3 text-sm">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Address Display Text</label>
-                            <input type="text" id="in-text-address" class="w-full border rounded px-3 py-2 outline-none focus:border-primary">
+                            <label class="block text-[11px] uppercase tracking-widest text-white/50 mb-2">Address Display Text</label>
+                            <input type="text" id="in-text-address" class="ios-input w-full px-4 py-3 text-sm">
                         </div>
                     </div>
                 </div>
@@ -522,19 +635,19 @@
                 });
             });
 
-            // Sticky Navbar Glass Effect
+            // Sticky Navbar Glass Effect adjustments based on scroll
             const navbar = document.getElementById('navbar');
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 20) {
-                    navbar.classList.add('shadow-md');
-                    navbar.style.background = 'rgba(255, 255, 255, 0.9)';
+                    navbar.style.background = 'rgba(20, 20, 20, 0.7)';
+                    navbar.style.boxShadow = '0 4px 30px rgba(0,0,0,0.3)';
                 } else {
-                    navbar.classList.remove('shadow-md');
-                    navbar.style.background = 'rgba(255, 255, 255, 0.7)';
+                    navbar.style.background = 'rgba(20, 20, 20, 0.5)';
+                    navbar.style.boxShadow = 'none';
                 }
             });
 
-            // Scroll Animations
+            // Smooth Intersection Observer Animations
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -542,19 +655,25 @@
                         observer.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.1 });
-            document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+            }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+            document.querySelectorAll('.ios-fade-up').forEach(el => observer.observe(el));
 
 
             // ==========================================
             // CMS ADMIN PANEL LOGIC 
             // ==========================================
 
+            // Helper to convert hex to rgb string for CSS variables
+            function hexToRgb(hex) {
+                var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+                return result ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` : '10, 132, 255';
+            }
+
             // Default Data Structure
             const defaultCMSData = {
                 theme: {
-                    primaryColor: '#2563eb',
-                    mode: 'light' // light or dark
+                    primaryColor: '#0A84FF', // Apple Blue
+                    mode: '0.6' // Overlay opacity
                 },
                 visibility: {
                     services: true,
@@ -564,7 +683,7 @@
                 content: {
                     brandName: 'Abhay Cyber Zone',
                     heroBadge: '#1 Digital Service Provider in Biraul',
-                    heroTitle: 'Fast & Trusted <br class="hidden md:block" /> <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Online Services</span>',
+                    heroTitle: 'Fast & Trusted <br class="hidden md:block" /> Online Services',
                     heroTagline: 'All digital services available at one place with fast processing and trusted support. We handle the paperwork, so you can focus on your business.',
                     s1Icon: 'fa-solid fa-file-invoice-dollar',
                     s1Title: 'GST Registration',
@@ -584,7 +703,7 @@
                 }
             };
 
-            let siteData = JSON.parse(localStorage.getItem('abhayCMSData')) || JSON.parse(JSON.stringify(defaultCMSData));
+            let siteData = JSON.parse(localStorage.getItem('abhayCMSDataV2')) || JSON.parse(JSON.stringify(defaultCMSData));
 
             // Setup DOM Binders
             const BINDERS = {
@@ -598,7 +717,7 @@
                 'cms-s3-title': 's3Title', 'cms-s3-desc': 's3Desc',
                 'cms-s4-title': 's4Title', 'cms-s4-desc': 's4Desc',
                 'cms-phone-text': 'textPhone',
-                'cms-wa-text': 'textPhone', // Re-using phone text for WA display
+                'cms-wa-text': 'textPhone',
                 'cms-address-text': 'textAddress'
             };
 
@@ -611,20 +730,12 @@
 
             // Render Function (Updates Website UI based on siteData)
             function renderWebsite() {
-                // 1. Theme
-                document.documentElement.style.setProperty('--color-primary', siteData.theme.primaryColor);
+                // 1. Theme (Accent Color & Background Overlay)
+                document.documentElement.style.setProperty('--ios-accent', siteData.theme.primaryColor);
+                document.documentElement.style.setProperty('--ios-accent-rgb', hexToRgb(siteData.theme.primaryColor));
                 
-                // Dark mode layout handler (simple simulation)
-                const body = document.getElementById('body-bg');
-                if(siteData.theme.mode === 'dark') {
-                    body.classList.replace('bg-gray-50', 'bg-gray-900');
-                    document.documentElement.style.setProperty('--bg-color-1', '#1e293b');
-                    document.documentElement.style.setProperty('--bg-color-2', '#0f172a');
-                } else {
-                    body.classList.replace('bg-gray-900', 'bg-gray-50');
-                    document.documentElement.style.setProperty('--bg-color-1', '#f0fdfa');
-                    document.documentElement.style.setProperty('--bg-color-2', '#e0e7ff');
-                }
+                const overlay = document.getElementById('dynamic-overlay');
+                if(overlay) overlay.style.background = `rgba(0,0,0,${siteData.theme.mode})`;
 
                 // 2. Visibility Toggles
                 document.getElementById('services').style.display = siteData.visibility.services ? 'block' : 'none';
@@ -659,9 +770,7 @@
                 document.getElementById('cms-contact-call').href = `tel:${cleanPhone}`;
             }
 
-            // Initial Render
             renderWebsite();
-
 
             // --- Hidden Trigger Logic (5 Clicks) ---
             let clickCount = 0;
@@ -684,7 +793,6 @@
 
             function showLoginModal() {
                 loginModal.classList.remove('hidden');
-                // Small delay for transition
                 setTimeout(() => {
                     loginModal.classList.remove('opacity-0');
                     loginBox.classList.remove('scale-95');
@@ -699,7 +807,7 @@
                     document.getElementById('login-error').classList.add('hidden');
                     document.getElementById('admin-id').value = '';
                     document.getElementById('admin-pwd').value = '';
-                }, 300);
+                }, 500);
             }
 
             document.getElementById('btn-close-login').addEventListener('click', hideLoginModal);
@@ -709,10 +817,9 @@
                 const id = document.getElementById('admin-id').value;
                 const pwd = document.getElementById('admin-pwd').value;
 
-                // NOTE: Hardcoded for simulation as requested
                 if (id === 'Abhay@#kumar*372' && pwd === 'Abhay@kumar372#') {
                     hideLoginModal();
-                    openDashboard();
+                    setTimeout(openDashboard, 400); // Wait for modal to close
                 } else {
                     document.getElementById('login-error').classList.remove('hidden');
                 }
@@ -721,14 +828,11 @@
 
             // --- Dashboard Logic ---
             const INPUT_MAP = {
-                // Theme
                 'in-color-primary': { type: 'theme', key: 'primaryColor' },
                 'in-theme-mode': { type: 'theme', key: 'mode' },
-                // Vis
                 'in-vis-services': { type: 'vis', key: 'services' },
                 'in-vis-features': { type: 'vis', key: 'features' },
                 'in-vis-contact': { type: 'vis', key: 'contact' },
-                // Content
                 'in-brand-name': { type: 'content', key: 'brandName' },
                 'in-hero-badge': { type: 'content', key: 'heroBadge' },
                 'in-hero-title': { type: 'content', key: 'heroTitle' },
@@ -754,7 +858,6 @@
                         el.value = val;
                     }
                     
-                    // Special case for color hex sync
                     if(inputId === 'in-color-primary') {
                         document.getElementById('in-color-primary-text').value = val;
                     }
@@ -770,7 +873,6 @@
                         let val = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
                         siteData[path.type][path.key] = val;
                         
-                        // Sync Color inputs
                         if(inputId === 'in-color-primary') {
                             document.getElementById('in-color-primary-text').value = val;
                         } else if (inputId === 'in-color-primary-text') {
@@ -778,11 +880,10 @@
                             siteData.theme.primaryColor = val;
                         }
 
-                        renderWebsite(); // Live update
+                        renderWebsite();
                     });
                 }
 
-                // Sync Hex Text Input
                 document.getElementById('in-color-primary-text').addEventListener('input', (e) => {
                     const val = e.target.value;
                     if(/^#[0-9A-F]{6}$/i.test(val)){
@@ -797,35 +898,32 @@
                 dashboard.classList.remove('hidden');
                 populateDashboard();
                 setupLivePreview();
-                // slide up animation
-                setTimeout(() => dashboard.classList.remove('translate-y-full'), 10);
+                setTimeout(() => {
+                    dashboard.classList.remove('opacity-0', 'scale-105');
+                }, 10);
             }
 
-            // Close Dashboard
             document.getElementById('btn-close-dashboard').addEventListener('click', () => {
-                dashboard.classList.add('translate-y-full');
-                setTimeout(() => dashboard.classList.add('hidden'), 500);
+                dashboard.classList.add('opacity-0', 'scale-105');
+                setTimeout(() => dashboard.classList.add('hidden'), 700);
                 
-                // If closed without saving, reload from storage
-                const saved = localStorage.getItem('abhayCMSData');
+                const saved = localStorage.getItem('abhayCMSDataV2');
                 siteData = saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(defaultCMSData));
                 renderWebsite();
             });
 
-            // Save Changes
             document.getElementById('btn-save-cms').addEventListener('click', (e) => {
-                localStorage.setItem('abhayCMSData', JSON.stringify(siteData));
+                localStorage.setItem('abhayCMSDataV2', JSON.stringify(siteData));
                 const btn = e.target;
                 const ogHtml = btn.innerHTML;
-                btn.innerHTML = '<i class="fa-solid fa-check mr-2"></i> Saved!';
-                btn.classList.replace('bg-green-600', 'bg-blue-600');
+                btn.innerHTML = '<i class="fa-solid fa-check mr-2"></i> Saved';
+                btn.style.background = '#34C759'; // iOS Green
                 setTimeout(() => {
                     btn.innerHTML = ogHtml;
-                    btn.classList.replace('bg-blue-600', 'bg-green-600');
+                    btn.style.background = ''; // Revert to accent
                 }, 2000);
             });
 
-            // Reset to defaults
             document.getElementById('btn-reset-cms').addEventListener('click', () => {
                 if(confirm('Are you sure you want to reset all content and styles to original defaults?')) {
                     siteData = JSON.parse(JSON.stringify(defaultCMSData));
@@ -837,17 +935,15 @@
             // Dashboard Tabs Logic
             document.querySelectorAll('.cms-tab-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
-                    // Reset tab styles
                     document.querySelectorAll('.cms-tab-btn').forEach(b => {
-                        b.classList.remove('text-primary', 'bg-blue-50');
-                        b.classList.add('text-gray-600');
+                        b.classList.remove('bg-white/10', 'text-white');
+                        b.classList.add('text-white/70');
                     });
-                    // Active tab style
+                    
                     const current = e.currentTarget;
-                    current.classList.remove('text-gray-600');
-                    current.classList.add('text-primary', 'bg-blue-50');
+                    current.classList.remove('text-white/70');
+                    current.classList.add('bg-white/10', 'text-white');
 
-                    // Show content
                     document.querySelectorAll('.cms-tab-content').forEach(c => c.classList.add('hidden'));
                     const targetId = current.getAttribute('data-target');
                     document.getElementById(targetId).classList.remove('hidden');
