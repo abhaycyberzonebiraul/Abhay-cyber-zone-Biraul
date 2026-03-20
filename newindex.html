@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhay Cyber Zone Biraul | Fast & Trusted Online Services</title>
+    <meta name="description" content="All digital services available at one place with fast processing and trusted support.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Apple System Typography & Core Variables */
+        :root {
+            --ios-accent: #0A84FF; /* iOS Blue */
+            --ios-overlay: rgba(0, 0, 0, 0.6);
+            --ios-bezier: cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, "Segoe UI", Roboto, Ubuntu, sans-serif;
+            background-color: #000;
+            color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        /* Fullscreen Background Setup */
+        .bg-system {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: url('background.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -2;
+        }
+        
+        .bg-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: var(--ios-overlay);
+            z-index: -1;
+            transition: background 0.5s var(--ios-bezier);
+        }
+
+        /* Glassmorphism Classes */
+        .ios-glass {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+        }
+
+        .ios-glass-heavy {
+            background: rgba(30, 30, 30, 0.65);
+            backdrop-filter: blur(35px);
+            -webkit-backdrop-filter: blur(35px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border-radius: 24px;
+        }
+
+        .ios-glass-nav {
+            background: rgba(20, 20, 20, 0.5);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Micro-Interactions & Animations */
+        .ios-btn {
+            transition: all 0.4s var(--ios-bezier);
+            cursor: pointer;
+            border-radius: 9999px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .ios-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .ios-btn:active {
+            transform: scale(0.96);
+            opacity: 0.8;
+        }
+
+        .ios-btn-primary {
+            background-color: var(--ios-accent);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(var(--ios-accent-rgb), 0.4);
+        }
+
+        .ios-card {
+            transition: all 0.5s var(--ios-bezier);
+        }
+        .ios-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Inputs */
+        .ios-input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 14px;
+            transition: all 0.3s var(--ios-bezier);
+        }
+        .ios-input:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--ios-accent);
+            box-shadow: 0 0 0 4px rgba(10, 132, 255, 0.2);
+            outline: none;
+        }
+        .ios-input::placeholder { color: rgba(255, 255, 255, 0.5); }
+
+        /* Scroll Animation Utility */
+        .ios-fade-up {
+            opacity: 0;
+            transform: translateY(30px) scale(0.98);
+            transition: all 0.7s var(--ios-bezier);
+        }
+        .ios-fade-up.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Custom Scrollbar for Admin */
+        .admin-scroll::-webkit-scrollbar { width: 6px; }
+        .admin-scroll::-webkit-scrollbar-track { background: transparent; }
+        .admin-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
+        .admin-scroll::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.4); }
+
+        /* Text Utilities */
+        .text-gradient {
+            background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.6) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- Social Media Hover Effects --- */
+        .social-link {
+            transition: all 0.4s var(--ios-bezier);
+        }
+        .social-link:hover {
+            transform: scale(1.15);
+        }
+        .social-glow-fb:hover { text-shadow: 0 0 15px #1877F2; color: #1877F2; border-color: rgba(24, 119, 242, 0.5); }
+        .social-glow-wa:hover { text-shadow: 0 0 15px #25D366; color: #25D366; border-color: rgba(37, 211, 102, 0.5); }
+        .social-glow-tg:hover { text-shadow: 0 0 15px #0088cc; color: #0088cc; border-color: rgba(0, 136, 204, 0.5); }
+        .social-glow-ig:hover { text-shadow: 0 0 15px #E1306C; color: #E1306C; border-color: rgba(225, 48, 108, 0.5); }
+        
+        /* --- Floating Social Bar (Left) --- */
+        .floating-social-bar {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 12px 10px;
+        }
+        @media (max-width: 768px) {
+            .floating-social-bar {
+                display: none;
+            }
+        }
+        
+        /* --- WhatsApp Floating Button Animation --- */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        .wa-float-btn {
+            animation: pulse-ring 2s infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Elements -->
+    <div class="bg-system"></div>
+    <div class="bg-overlay" id="dynamic-overlay"></div>
+
+    <!-- --- Floating Social Media Bar (Left Side) --- -->
+    <div class="floating-social-bar ios-glass rounded-full border border-white/10 shadow-lg">
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/share/1CTm9V4Tc4/" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center text-white/80 social-link social-glow-fb" title="Facebook">
+            <i class="fa-brands fa-facebook-f text-lg"></i>
+        </a>
+        <!-- WhatsApp Channel -->
+        <a href="https://whatsapp.com/channel/0029Vb6jt56HbFV8tjB5EI3x" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center text-white/80 social-link social-glow-wa" title="WhatsApp Channel">
+            <i class="fa-brands fa-whatsapp text-lg"></i>
+        </a>
+        <!-- WhatsApp Group -->
+        <a href="https://chat.whatsapp.com/D68lgG7j30n6jM9vOckGpG?mode=gi_t" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center text-white/80 social-link social-glow-wa" title="Join WhatsApp Group">
+            <i class="fa-solid fa-users text-sm"></i>
+        </a>
+        <!-- Telegram -->
+        <a href="https://t.me/Abhaycyberzonebiraul" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center text-white/80 social-link social-glow-tg" title="Telegram">
+            <i class="fa-brands fa-telegram text-lg"></i>
+        </a>
+        <!-- Instagram -->
+        <a href="https://instagram.com/yourusername" target="_blank" class="w-10 h-10 rounded-full flex items-center justify-center text-white/80 social-link social-glow-ig" title="Instagram">
+            <i class="fa-brands fa-instagram text-lg"></i>
+        </a>
+    </div>
+
+    <!-- Sticky Navigation -->
+    <nav class="fixed w-full z-40 transition-all duration-500 ios-glass-nav" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <!-- Logo & Trigger -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer select-none group" id="logo-trigger" title="Abhay Cyber Zone">
+                    <div class="w-11 h-11 rounded-[12px] bg-white/10 flex items-center justify-center mr-3 shadow-sm border border-white/10 overflow-hidden transition-transform duration-300 group-active:scale-95">
+                        <img src="logo.png" alt="Logo" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <i class="fa-solid fa-bolt text-white text-xl hidden" style="display: none;"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-semibold text-xl leading-tight text-white tracking-tight" id="cms-brand-name">Abhay Cyber Zone</h1>
+                        <p class="text-[11px] text-white/60 font-medium tracking-wide uppercase mt-0.5" id="cms-brand-sub" style="color: var(--ios-accent)">Biraul</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-white/80 hover:text-white font-medium transition-colors text-sm">Home</a>
+                    <a href="#services" class="text-white/80 hover:text-white font-medium transition-colors text-sm nav-services">Services</a>
+                    <a href="#features" class="text-white/80 hover:text-white font-medium transition-colors text-sm nav-features">Features</a>
+                    <a href="#contact" class="text-white/80 hover:text-white font-medium transition-colors text-sm nav-contact">Contact</a>
+                    <a href="tel:+919102288372" id="cms-nav-call" class="ios-btn ios-btn-primary px-5 py-2.5 text-sm">
+                        <i class="fa-solid fa-phone mr-2 text-xs"></i> Call Now
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white/80 hover:text-white focus:outline-none transition-transform active:scale-90">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Glass) -->
+        <div id="mobile-menu" class="hidden md:hidden absolute w-full left-0 top-20 ios-glass border-t-0 border-x-0 rounded-none border-b border-white/10">
+            <div class="px-4 py-4 space-y-1">
+                <a href="#home" class="block px-4 py-3 rounded-xl text-base font-medium text-white hover:bg-white/10 transition">Home</a>
+                <a href="#services" class="block px-4 py-3 rounded-xl text-base font-medium text-white hover:bg-white/10 transition nav-services">Services</a>
+                <a href="#features" class="block px-4 py-3 rounded-xl text-base font-medium text-white hover:bg-white/10 transition nav-features">Features</a>
+                <a href="#contact" class="block px-4 py-3 rounded-xl text-base font-medium text-white hover:bg-white/10 transition nav-contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-32 pb-20 lg:pt-56 lg:pb-40 overflow-hidden flex flex-col justify-center min-h-[90vh]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center w-full">
+            <span class="inline-block py-1.5 px-4 rounded-full ios-glass border border-white/20 text-white/90 text-xs font-semibold tracking-wide uppercase mb-6 ios-fade-up shadow-lg" id="cms-hero-badge">
+                #1 Digital Service Provider in Biraul
+            </span>
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 ios-fade-up text-gradient" style="transition-delay: 0.1s;" id="cms-hero-title">
+                Fast & Trusted <br class="hidden md:block" /> 
+                Online Services
+            </h1>
+            <p class="mt-4 text-lg md:text-xl text-white/70 max-w-2xl mx-auto mb-12 ios-fade-up font-normal leading-relaxed" style="transition-delay: 0.2s;" id="cms-hero-tagline">
+                All digital services available at one place with fast processing and trusted support. We handle the paperwork, so you can focus on your business.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 ios-fade-up" style="transition-delay: 0.3s;">
+                <a href="#contact" class="w-full sm:w-auto px-8 py-3.5 ios-btn ios-btn-primary text-base">
+                    Contact Now
+                </a>
+                <a href="https://wa.me/919102288372" target="_blank" id="cms-hero-wa" class="w-full sm:w-auto px-8 py-3.5 ios-btn ios-glass text-white text-base hover:text-[#25D366] group">
+                    <i class="fa-brands fa-whatsapp text-lg mr-2 transition-colors group-hover:text-[#25D366]"></i> WhatsApp Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 relative section-toggle">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 ios-fade-up">
+                <h2 class="font-semibold tracking-widest uppercase text-xs mb-3" style="color: var(--ios-accent)">What We Do</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-white tracking-tight">Our Premium Services</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- S1 -->
+                <div class="ios-glass ios-card p-8 ios-fade-up">
+                    <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm border border-white/10" style="background: rgba(255,255,255,0.1); color: var(--ios-accent)">
+                        <i class="fa-solid fa-file-invoice-dollar" id="cms-s1-icon"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold text-white mb-3 tracking-tight" id="cms-s1-title">GST Registration</h4>
+                    <p class="text-white/60 text-sm leading-relaxed" id="cms-s1-desc">Complete GST registration and hassle-free return filing services for your business compliance.</p>
+                </div>
+
+                <!-- S2 -->
+                <div class="ios-glass ios-card p-8 ios-fade-up" style="transition-delay: 0.1s;">
+                    <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm border border-white/10" style="background: rgba(255,255,255,0.1); color: var(--ios-accent)">
+                        <i class="fa-regular fa-id-card" id="cms-s2-icon"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold text-white mb-3 tracking-tight" id="cms-s2-title">PAN Card Service</h4>
+                    <p class="text-white/60 text-sm leading-relaxed" id="cms-s2-desc">Apply for a new PAN card or quickly update existing details with our fast-track processing.</p>
+                </div>
+
+                <!-- S3 -->
+                <div class="ios-glass ios-card p-8 ios-fade-up" style="transition-delay: 0.2s;">
+                    <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm border border-white/10" style="background: rgba(255,255,255,0.1); color: var(--ios-accent)">
+                        <i class="fa-solid fa-utensils" id="cms-s3-icon"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold text-white mb-3 tracking-tight" id="cms-s3-title">FSSAI Licence</h4>
+                    <p class="text-white/60 text-sm leading-relaxed" id="cms-s3-desc">Get your food business officially registered with the mandatory FSSAI certification quickly.</p>
+                </div>
+
+                <!-- S4 -->
+                <div class="ios-glass ios-card p-8 ios-fade-up" style="transition-delay: 0.3s;">
+                    <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm border border-white/10" style="background: rgba(255,255,255,0.1); color: var(--ios-accent)">
+                        <i class="fa-solid fa-industry" id="cms-s4-icon"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold text-white mb-3 tracking-tight" id="cms-s4-title">Udyam Registration</h4>
+                    <p class="text-white/60 text-sm leading-relaxed" id="cms-s4-desc">Register your MSME effortlessly with us to avail all government benefits and subsidies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24 relative section-toggle">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-16 items-center">
+                
+                <div class="w-full lg:w-1/2 ios-fade-up">
+                    <h2 class="font-semibold tracking-widest uppercase text-xs mb-3" style="color: var(--ios-accent)">Why Choose Us</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">Built on Trust & Efficiency</h3>
+                    <p class="text-white/70 text-lg mb-10 leading-relaxed font-light">
+                        At Abhay Cyber Zone, we understand your time is valuable. We eliminate the red tape and long queues, providing a seamless digital service experience right here in Biraul.
+                    </p>
+                    
+                    <div class="space-y-8">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-12 h-12 ios-glass rounded-xl flex items-center justify-center text-xl" style="color: var(--ios-accent)">
+                                <i class="fa-solid fa-bolt"></i>
+                            </div>
+                            <div class="ml-5">
+                                <h4 class="text-lg font-semibold text-white tracking-tight">Fast Processing</h4>
+                                <p class="text-white/60 text-sm mt-1 leading-relaxed">Quick turnaround times for all your crucial documents.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-12 h-12 ios-glass rounded-xl flex items-center justify-center text-xl" style="color: var(--ios-accent)">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <div class="ml-5">
+                                <h4 class="text-lg font-semibold text-white tracking-tight">Trusted Service</h4>
+                                <p class="text-white/60 text-sm mt-1 leading-relaxed">100% secure handling of your personal and business data.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-1/2 ios-fade-up" style="transition-delay: 0.2s;">
+                    <div class="ios-glass p-2 rounded-[28px]">
+                        <div class="rounded-[20px] overflow-hidden relative aspect-square md:aspect-video lg:aspect-square flex items-center justify-center bg-black/20">
+                            <!-- Soft internal glow element -->
+                            <div class="absolute w-64 h-64 rounded-full blur-[80px] opacity-40" style="background: var(--ios-accent)"></div>
+                            
+                            <div class="ios-glass p-8 rounded-[24px] text-center max-w-sm z-10 border border-white/20">
+                                <i class="fa-solid fa-check-circle text-5xl mb-5" style="color: var(--ios-accent)"></i>
+                                <h4 class="text-4xl font-bold mb-2 text-white">1000+</h4>
+                                <p class="text-white/70 text-sm font-medium uppercase tracking-wide">Satisfied Clients</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 relative section-toggle">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 ios-fade-up">
+                <h2 class="font-semibold tracking-widest uppercase text-xs mb-3" style="color: var(--ios-accent)">Get In Touch</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-white tracking-tight">Ready to Get Started?</h3>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 ios-fade-up">
+                
+                <!-- Contact Info -->
+                <div class="lg:col-span-2 ios-glass p-10 rounded-[28px] flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute -top-24 -right-24 w-48 h-48 rounded-full blur-[60px] opacity-30" style="background: var(--ios-accent)"></div>
+                    
+                    <div class="relative z-10">
+                        <h4 class="text-2xl font-bold text-white mb-8 tracking-tight">Contact Information</h4>
+                        <div class="space-y-8">
+                            <a href="tel:+919102288372" id="cms-contact-call" class="flex items-center text-white/80 hover:text-white transition-colors group">
+                                <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mr-5 group-hover:bg-white/20 transition duration-300 border border-white/5">
+                                    <i class="fa-solid fa-phone text-lg"></i>
+                                </div>
+                                <div>
+                                    <p class="text-[11px] font-semibold tracking-wider uppercase text-white/50 mb-1">Call Us</p>
+                                    <p class="text-base font-medium">+91 9102288372</p>
+                                </div>
+                            </a>
+                            <a href="mailto:support@abhaycyberzone.com" id="cms-contact-email" class="flex items-center text-white/80 hover:text-white transition-colors group">
+                                <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mr-5 group-hover:bg-white/20 transition duration-300 border border-white/5">
+                                    <i class="fa-solid fa-envelope text-lg"></i>
+                                </div>
+                                <div>
+                                    <p class="text-[11px] font-semibold tracking-wider uppercase text-white/50 mb-1">Email Us</p>
+                                    <p class="text-base font-medium">support@abhaycyberzone.com</p>
+                                </div>
+                            </a>
+                            <div class="flex items-center text-white/80 group">
+                                <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mr-5 group-hover:bg-white/20 transition duration-300 border border-white/5">
+                                    <i class="fa-solid fa-location-dot text-lg"></i>
+                                </div>
+                                <div>
+                                    <p class="text-[11px] font-semibold tracking-wider uppercase text-white/50 mb-1">Location</p>
+                                    <p class="text-base font-medium">Biraul, Bihar</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="lg:col-span-3 ios-glass p-10 rounded-[28px]">
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-semibold uppercase tracking-wider text-white/50 mb-2">Full Name</label>
+                                <input type="text" class="w-full ios-input px-5 py-4 text-sm" placeholder="John Doe">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold uppercase tracking-wider text-white/50 mb-2">Phone Number</label>
+                                <input type="tel" class="w-full ios-input px-5 py-4 text-sm" placeholder="+91 00000 00000">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-white/50 mb-2">Message</label>
+                            <textarea rows="4" class="w-full ios-input px-5 py-4 text-sm resize-none" placeholder="How can we help you?"></textarea>
+                        </div>
+                        <button type="submit" class="w-full ios-btn ios-btn-primary py-4 text-base font-semibold mt-2">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- --- Footer Section --- -->
+    <footer class="relative pt-16 pb-8 mt-12 z-20 overflow-hidden border-t border-white/10 ios-glass-nav rounded-t-[40px]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-10">
+                
+                <!-- Brand Info -->
+                <div class="text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start mb-4">
+                        <div class="w-12 h-12 rounded-[12px] bg-white/10 flex items-center justify-center mr-4 shadow-sm border border-white/10 overflow-hidden">
+                            <img src="logo.png" alt="Logo" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <i class="fa-solid fa-bolt text-white text-xl hidden" style="display: none;"></i>
+                        </div>
+                        <div>
+                            <h2 class="font-bold text-xl leading-tight text-white tracking-tight">Abhay Cyber Zone</h2>
+                            <p class="text-[11px] text-white/60 font-medium tracking-wide uppercase mt-0.5" style="color: var(--ios-accent)">Biraul</p>
+                        </div>
+                    </div>
+                    <p class="text-white/50 text-sm max-w-sm mx-auto md:mx-0 font-light leading-relaxed">
+                        Your trusted digital partner. We provide fast, secure, and reliable online services directly to your fingertips.
+                    </p>
+                </div>
+
+                <!-- Connect With Us -->
+                <div class="text-center md:text-right">
+                    <h3 class="text-white font-semibold text-xs tracking-widest uppercase mb-5" style="color: var(--ios-accent)">Connect With Us</h3>
+                    <div class="flex items-center justify-center md:justify-end gap-4">
+                        <a href="https://www.facebook.com/share/1CTm9V4Tc4/" target="_blank" class="w-12 h-12 rounded-[14px] ios-glass flex items-center justify-center text-white/80 social-link social-glow-fb border border-white/10" title="Facebook">
+                            <i class="fa-brands fa-facebook-f text-lg"></i>
+                        </a>
+                        <a href="https://whatsapp.com/channel/0029Vb6jt56HbFV8tjB5EI3x" target="_blank" class="w-12 h-12 rounded-[14px] ios-glass flex items-center justify-center text-white/80 social-link social-glow-wa border border-white/10" title="WhatsApp Channel">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                        </a>
+                        <a href="https://chat.whatsapp.com/D68lgG7j30n6jM9vOckGpG?mode=gi_t" target="_blank" class="w-12 h-12 rounded-[14px] ios-glass flex items-center justify-center text-white/80 social-link social-glow-wa border border-white/10" title="Join WhatsApp Group">
+                            <i class="fa-solid fa-users text-sm"></i>
+                        </a>
+                        <a href="https://t.me/Abhaycyberzonebiraul" target="_blank" class="w-12 h-12 rounded-[14px] ios-glass flex items-center justify-center text-white/80 social-link social-glow-tg border border-white/10" title="Telegram">
+                            <i class="fa-brands fa-telegram text-lg"></i>
+                        </a>
+                        <a href="https://instagram.com/yourusername" target="_blank" class="w-12 h-12 rounded-[14px] ios-glass flex items-center justify-center text-white/80 social-link social-glow-ig border border-white/10" title="Instagram">
+                            <i class="fa-brands fa-instagram text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-white/10 text-center flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-white/40 text-xs font-light">&copy; 2024 Abhay Cyber Zone Biraul. All rights reserved.</p>
+                <div class="flex gap-6 text-white/40 text-xs font-light">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- --- Floating WhatsApp Button (Wapas joda gaya hai) --- -->
+    <a href="https://wa.me/919102288372" target="_blank" class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center text-white shadow-2xl transition-all duration-300 hover:scale-110 wa-float-btn" style="background: linear-gradient(135deg, #25D366, #128C7E);" title="Chat with us on WhatsApp">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+        <!-- Chota notification dot -->
+        <span class="absolute top-0 right-0 flex h-4 w-4">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-4 w-4 bg-red-500 border-2 border-white"></span>
+        </span>
+    </a>
+
+    <!-- Interaction Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Navbar blur on scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-lg');
+            } else {
+                navbar.classList.remove('shadow-lg');
+            }
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.ios-fade-up').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
+
+
