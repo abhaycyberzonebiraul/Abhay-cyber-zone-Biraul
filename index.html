@@ -192,6 +192,10 @@
         .wa-float-btn {
             animation: pulse-ring 2s infinite;
         }
+
+        /* --- FAQ Accordion Fixes --- */
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
     </style>
 </head>
 <body>
@@ -245,6 +249,7 @@
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#home" class="text-white/80 hover:text-white font-medium transition-colors text-sm">Home</a>
                     <a href="#services" class="text-white/80 hover:text-white font-medium transition-colors text-sm nav-services">Services</a>
+                    <a href="#gst-registration" class="text-white/80 hover:text-white font-medium transition-colors text-sm">GST Service</a>
                     <a href="#features" class="text-white/80 hover:text-white font-medium transition-colors text-sm nav-features">Features</a>
                     <a href="#contact" class="text-white/80 hover:text-white font-medium transition-colors text-sm nav-contact">Contact</a>
                     <a href="tel:+919102288372" id="cms-nav-call" class="ios-btn ios-btn-primary px-5 py-2.5 text-sm">
@@ -266,6 +271,7 @@
             <div class="px-4 py-4 space-y-1">
                 <a href="#home" class="block px-4 py-3 rounded-xl text-base font-medium text-white hover:bg-white/10 transition">Home</a>
                 <a href="#services" class="block px-4 py-3 rounded-xl text-base font-medium text-white hover:bg-white/10 transition nav-services">Services</a>
+                <a href="#gst-registration" class="block px-4 py-3 rounded-xl text-base font-medium text-white hover:bg-white/10 transition">GST Service</a>
                 <a href="#features" class="block px-4 py-3 rounded-xl text-base font-medium text-white hover:bg-white/10 transition nav-features">Features</a>
                 <a href="#contact" class="block px-4 py-3 rounded-xl text-base font-medium text-white hover:bg-white/10 transition nav-contact">Contact</a>
             </div>
@@ -304,15 +310,14 @@
                 <h3 class="text-3xl md:text-4xl font-bold text-white tracking-tight">Our Premium Services</h3>
             </div>
 
-            <!-- Changed to lg:grid-cols-3 so that 6 items fit perfectly in 2 rows -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- S1 -->
-                <div class="ios-glass ios-card p-8 ios-fade-up">
+                <div class="ios-glass ios-card p-8 ios-fade-up cursor-pointer" onclick="document.getElementById('gst-registration').scrollIntoView({behavior: 'smooth'})">
                     <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm border border-white/10" style="background: rgba(255,255,255,0.1); color: var(--ios-accent)">
                         <i class="fa-solid fa-file-invoice-dollar" id="cms-s1-icon"></i>
                     </div>
                     <h4 class="text-xl font-semibold text-white mb-3 tracking-tight" id="cms-s1-title">GST Registration</h4>
-                    <p class="text-white/60 text-sm leading-relaxed" id="cms-s1-desc">Complete GST registration and hassle-free return filing services for your business compliance.</p>
+                    <p class="text-white/60 text-sm leading-relaxed" id="cms-s1-desc">Complete GST registration and hassle-free return filing services for your business compliance. Click to learn more.</p>
                 </div>
 
                 <!-- S2 -->
@@ -342,7 +347,7 @@
                     <p class="text-white/60 text-sm leading-relaxed" id="cms-s4-desc">Register your MSME effortlessly with us to avail all government benefits and subsidies.</p>
                 </div>
 
-                <!-- S5 (New Service) -->
+                <!-- S5 -->
                 <div class="ios-glass ios-card p-8 ios-fade-up" style="transition-delay: 0.4s;">
                     <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm border border-white/10" style="background: rgba(255,255,255,0.1); color: var(--ios-accent)">
                         <i class="fa-solid fa-certificate" id="cms-s5-icon"></i>
@@ -351,7 +356,7 @@
                     <p class="text-white/60 text-sm leading-relaxed" id="cms-s5-desc">Get certified for your computer skills even without formal training. We provide certificates for courses like DCA, ADCA, Typing, Tally, and more.</p>
                 </div>
 
-                <!-- S6 (New Service) -->
+                <!-- S6 -->
                 <div class="ios-glass ios-card p-8 ios-fade-up" style="transition-delay: 0.5s;">
                     <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-sm border border-white/10" style="background: rgba(255,255,255,0.1); color: var(--ios-accent)">
                         <i class="fa-solid fa-user-graduate" id="cms-s6-icon"></i>
@@ -363,8 +368,220 @@
         </div>
     </section>
 
+    <!-- ========================================== -->
+    <!-- NEW: DEDICATED GST REGISTRATION SECTION -->
+    <!-- ========================================== -->
+    <section id="gst-registration" class="py-24 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- 1. Hero Banner for GST -->
+            <div class="ios-glass p-10 md:p-16 rounded-[32px] text-center mb-12 relative overflow-hidden ios-fade-up">
+                <!-- Decorative Blur -->
+                <div class="absolute -top-32 -left-32 w-64 h-64 rounded-full blur-[80px] opacity-20" style="background: var(--ios-accent)"></div>
+                <div class="absolute -bottom-32 -right-32 w-64 h-64 rounded-full blur-[80px] opacity-10 bg-white"></div>
+                
+                <div class="relative z-10">
+                    <span class="inline-block py-1.5 px-4 rounded-full bg-white/10 border border-white/20 text-white/90 text-xs font-semibold tracking-wide uppercase mb-6 shadow-lg">Premium Service</span>
+                    <h2 id="cms-gst-hero-title" class="text-3xl md:text-5xl font-bold mb-6 text-white tracking-tight">Apna GST Registration Karwayein – Fast, Simple & Trusted</h2>
+                    <p id="cms-gst-hero-tagline" class="text-base md:text-xl text-white/70 mb-10 max-w-3xl mx-auto leading-relaxed">Fast, secure aur affordable GST registration service – bina kisi tension ke. Apna business securely grow karein.</p>
+                    
+                    <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                        <a href="#contact" id="cms-gst-btn-apply" class="w-full sm:w-auto px-8 py-3.5 ios-btn ios-btn-primary text-base font-semibold">Apply Now</a>
+                        <a href="https://wa.me/919102288372" target="_blank" id="cms-gst-btn-wa" class="w-full sm:w-auto px-8 py-3.5 ios-btn ios-glass text-white text-base hover:text-[#25D366] group font-semibold">
+                            <i class="fa-brands fa-whatsapp text-lg mr-2 transition-colors group-hover:text-[#25D366]"></i> WhatsApp Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                <!-- 2. About GST Section -->
+                <div class="ios-glass ios-card p-8 rounded-[28px] ios-fade-up">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center mr-4" style="color: var(--ios-accent)"><i class="fa-solid fa-circle-info text-xl"></i></div>
+                        <h3 id="cms-gst-about-title" class="text-2xl font-bold text-white tracking-tight">GST Registration Kya Hai?</h3>
+                    </div>
+                    <p class="text-white/70 text-sm leading-relaxed mb-6 font-light">GST (Goods and Services Tax) ek indirect tax hai jo pure India me businesses ke liye mandatory hai. Ye aapke business ko legal identity deta hai.</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start text-white/80 text-sm">
+                            <i class="fa-solid fa-circle-check mt-1 mr-3" style="color: var(--ios-accent)"></i> <span id="cms-gst-ben1">Business ko legal identity milti hai</span>
+                        </li>
+                        <li class="flex items-start text-white/80 text-sm">
+                            <i class="fa-solid fa-circle-check mt-1 mr-3" style="color: var(--ios-accent)"></i> <span id="cms-gst-ben2">B2B invoice generate kar sakte hain</span>
+                        </li>
+                        <li class="flex items-start text-white/80 text-sm">
+                            <i class="fa-solid fa-circle-check mt-1 mr-3" style="color: var(--ios-accent)"></i> <span id="cms-gst-ben3">Amazon, Flipkart par online selling ke liye zaroori</span>
+                        </li>
+                        <li class="flex items-start text-white/80 text-sm">
+                            <i class="fa-solid fa-circle-check mt-1 mr-3" style="color: var(--ios-accent)"></i> <span id="cms-gst-ben4">Input Tax Credit (ITC) ka fayda milta hai</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 3. Eligibility Section -->
+                <div class="ios-glass ios-card p-8 rounded-[28px] ios-fade-up" style="transition-delay: 0.1s;">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center mr-4" style="color: var(--ios-accent)"><i class="fa-solid fa-users text-xl"></i></div>
+                        <h3 id="cms-gst-elig-title" class="text-2xl font-bold text-white tracking-tight">Kaun Karwa Sakta Hai?</h3>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3 mb-6">
+                        <div class="bg-white/5 border border-white/10 rounded-xl p-3 flex items-center gap-3"><i class="fa-solid fa-store text-white/50"></i> <span id="cms-gst-elig1" class="text-sm text-white/80">Shopkeepers</span></div>
+                        <div class="bg-white/5 border border-white/10 rounded-xl p-3 flex items-center gap-3"><i class="fa-solid fa-laptop-code text-white/50"></i> <span id="cms-gst-elig2" class="text-sm text-white/80">Freelancers</span></div>
+                        <div class="bg-white/5 border border-white/10 rounded-xl p-3 flex items-center gap-3"><i class="fa-solid fa-cart-shopping text-white/50"></i> <span id="cms-gst-elig3" class="text-sm text-white/80">Online Sellers</span></div>
+                        <div class="bg-white/5 border border-white/10 rounded-xl p-3 flex items-center gap-3"><i class="fa-solid fa-briefcase text-white/50"></i> <span id="cms-gst-elig4" class="text-sm text-white/80">Service Providers</span></div>
+                        <div class="bg-white/5 border border-white/10 rounded-xl p-3 flex items-center gap-3 col-span-2"><i class="fa-solid fa-building text-white/50"></i> <span id="cms-gst-elig5" class="text-sm text-white/80">All Business Owners</span></div>
+                    </div>
+                    <div class="bg-blue-500/10 border border-blue-500/20 rounded-xl p-4">
+                        <p id="cms-gst-elig-note" class="text-sm text-blue-200"><i class="fa-solid fa-circle-exclamation mr-2"></i>Turnover limit cross hone par ya online business karne walo ke liye GST mandatory hai.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                <!-- 4. Required Documents -->
+                <div class="ios-glass ios-card p-8 rounded-[28px] ios-fade-up lg:col-span-1">
+                    <h3 id="cms-gst-docs-title" class="text-xl font-bold text-white tracking-tight mb-6">Required Documents</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-center text-white/80 text-sm bg-white/5 p-3 rounded-xl border border-white/5"><i class="fa-regular fa-id-card w-6 text-center mr-3 text-white/50"></i> <span id="cms-gst-doc1">PAN Card</span></li>
+                        <li class="flex items-center text-white/80 text-sm bg-white/5 p-3 rounded-xl border border-white/5"><i class="fa-solid fa-fingerprint w-6 text-center mr-3 text-white/50"></i> <span id="cms-gst-doc2">Aadhaar Card</span></li>
+                        <li class="flex items-center text-white/80 text-sm bg-white/5 p-3 rounded-xl border border-white/5"><i class="fa-solid fa-image w-6 text-center mr-3 text-white/50"></i> <span id="cms-gst-doc3">Passport Size Photo</span></li>
+                        <li class="flex items-center text-white/80 text-sm bg-white/5 p-3 rounded-xl border border-white/5"><i class="fa-solid fa-building-columns w-6 text-center mr-3 text-white/50"></i> <span id="cms-gst-doc4">Bank Details (Passbook/Statement)</span></li>
+                        <li class="flex items-center text-white/80 text-sm bg-white/5 p-3 rounded-xl border border-white/5"><i class="fa-solid fa-file-contract w-6 text-center mr-3 text-white/50"></i> <span id="cms-gst-doc5">Address Proof (Electricity Bill / Rent Agreement)</span></li>
+                    </ul>
+                </div>
+
+                <!-- 5. Process Section -->
+                <div class="ios-glass ios-card p-8 rounded-[28px] ios-fade-up lg:col-span-2" style="transition-delay: 0.1s;">
+                    <h3 id="cms-gst-proc-title" class="text-xl font-bold text-white tracking-tight mb-8">Simple Process</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 relative">
+                        <!-- Step 1 -->
+                        <div class="text-center p-4">
+                            <div class="w-14 h-14 mx-auto rounded-full ios-glass flex items-center justify-center text-xl font-bold mb-4 border-2" style="border-color: var(--ios-accent)">1</div>
+                            <h4 id="cms-gst-proc1-title" class="font-semibold text-white mb-2 text-sm">WhatsApp Docs</h4>
+                            <p class="text-xs text-white/50">Send all required documents on our WhatsApp.</p>
+                        </div>
+                        <!-- Step 2 -->
+                        <div class="text-center p-4">
+                            <div class="w-14 h-14 mx-auto rounded-full ios-glass flex items-center justify-center text-xl font-bold mb-4 border-2" style="border-color: var(--ios-accent)">2</div>
+                            <h4 id="cms-gst-proc2-title" class="font-semibold text-white mb-2 text-sm">Form Filling</h4>
+                            <p class="text-xs text-white/50">Our experts will fill out your GST application.</p>
+                        </div>
+                        <!-- Step 3 -->
+                        <div class="text-center p-4">
+                            <div class="w-14 h-14 mx-auto rounded-full ios-glass flex items-center justify-center text-xl font-bold mb-4 border-2" style="border-color: var(--ios-accent)">3</div>
+                            <h4 id="cms-gst-proc3-title" class="font-semibold text-white mb-2 text-sm">OTP Verification</h4>
+                            <p class="text-xs text-white/50">Verify Aadhaar mapping via secure OTP.</p>
+                        </div>
+                        <!-- Step 4 -->
+                        <div class="text-center p-4">
+                            <div class="w-14 h-14 mx-auto rounded-full ios-glass flex items-center justify-center text-xl font-bold mb-4 border-2 bg-[var(--ios-accent)] text-white">4</div>
+                            <h4 id="cms-gst-proc4-title" class="font-semibold text-white mb-2 text-sm">GST Generated</h4>
+                            <p class="text-xs text-white/50">Receive your GST Number & Certificate easily.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+                <!-- 6. Why Choose Us (Trust) -->
+                <div class="ios-glass ios-card p-8 rounded-[28px] ios-fade-up lg:col-span-2">
+                    <h3 id="cms-gst-why-title" class="text-xl font-bold text-white tracking-tight mb-6">Why Choose Abhay Cyber Zone?</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl">
+                            <i class="fa-solid fa-bolt text-yellow-400 text-xl"></i>
+                            <span id="cms-gst-why1" class="text-sm font-medium text-white/90">Fast processing (24–72 hours)</span>
+                        </div>
+                        <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl">
+                            <i class="fa-solid fa-globe text-blue-400 text-xl"></i>
+                            <span id="cms-gst-why2" class="text-sm font-medium text-white/90">100% Online & Hassle-free</span>
+                        </div>
+                        <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl">
+                            <i class="fa-solid fa-shield-halved text-green-400 text-xl"></i>
+                            <span id="cms-gst-why3" class="text-sm font-medium text-white/90">Trusted & Secure Service</span>
+                        </div>
+                        <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl">
+                            <i class="fa-solid fa-tags text-pink-400 text-xl"></i>
+                            <span id="cms-gst-why4" class="text-sm font-medium text-white/90">Affordable Pricing</span>
+                        </div>
+                        <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl">
+                            <i class="fa-solid fa-map-location-dot text-red-400 text-xl"></i>
+                            <span id="cms-gst-why5" class="text-sm font-medium text-white/90">Local trusted cyber cafe in Biraul</span>
+                        </div>
+                        <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl">
+                            <i class="fa-solid fa-star text-yellow-500 text-xl"></i>
+                            <span id="cms-gst-why6" class="text-sm font-medium text-white/90">100+ Successful Registrations</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. Pricing Section -->
+                <div class="ios-glass ios-card p-8 rounded-[28px] ios-fade-up text-center border" style="border-color: rgba(10, 132, 255, 0.3); box-shadow: 0 0 30px rgba(10, 132, 255, 0.1);">
+                    <h3 id="cms-gst-price-title" class="text-sm font-semibold uppercase tracking-widest text-white/60 mb-6">GST Registration Charges</h3>
+                    <div class="flex justify-center items-baseline mb-6">
+                        <span class="text-2xl font-semibold text-white/70 mr-1">₹</span>
+                        <span id="cms-gst-price-val" class="text-6xl font-bold text-white">999</span>
+                    </div>
+                    <ul class="text-left space-y-3 mb-8 w-full max-w-[200px] mx-auto">
+                        <li class="flex items-center text-sm text-white/80"><i class="fa-solid fa-check text-green-400 mr-3"></i> <span id="cms-gst-price-note1">Transparent Pricing</span></li>
+                        <li class="flex items-center text-sm text-white/80"><i class="fa-solid fa-check text-green-400 mr-3"></i> <span id="cms-gst-price-note2">No hidden charges</span></li>
+                        <li class="flex items-center text-sm text-white/80"><i class="fa-solid fa-check text-green-400 mr-3"></i> <span id="cms-gst-price-note3">Free consultation</span></li>
+                    </ul>
+                    <a href="https://wa.me/919102288372" class="w-full py-4 ios-btn ios-btn-primary text-base font-semibold shadow-lg shadow-blue-500/30">Get Started Now</a>
+                </div>
+            </div>
+
+            <!-- 8. FAQ Section -->
+            <div class="max-w-4xl mx-auto ios-fade-up mb-12">
+                <h3 id="cms-gst-faq-title" class="text-2xl font-bold text-white tracking-tight mb-8 text-center">Frequently Asked Questions</h3>
+                
+                <details class="ios-glass mb-4 group rounded-2xl overflow-hidden cursor-pointer open:bg-white/5 transition-colors">
+                    <summary class="p-6 font-semibold flex justify-between items-center text-white/90">
+                        <span id="cms-gst-faq1-q">GST kitne din me milta hai?</span>
+                        <i class="fa-solid fa-chevron-down transition-transform duration-300 group-open:rotate-180"></i>
+                    </summary>
+                    <div class="px-6 pb-6 text-white/60 text-sm leading-relaxed" id="cms-gst-faq1-a">
+                        Generally, documents verify hone ke baad GST Registration certificate 3 se 7 working days ke andar mil jata hai.
+                    </div>
+                </details>
+
+                <details class="ios-glass mb-4 group rounded-2xl overflow-hidden cursor-pointer open:bg-white/5 transition-colors">
+                    <summary class="p-6 font-semibold flex justify-between items-center text-white/90">
+                        <span id="cms-gst-faq2-q">Ghar se apply ho sakta hai?</span>
+                        <i class="fa-solid fa-chevron-down transition-transform duration-300 group-open:rotate-180"></i>
+                    </summary>
+                    <div class="px-6 pb-6 text-white/60 text-sm leading-relaxed" id="cms-gst-faq2-a">
+                        Haan, bilkul! Process 100% online hai. Aapko sirf required documents WhatsApp par send karne hain, baaki sab hum manage karenge.
+                    </div>
+                </details>
+
+                <details class="ios-glass mb-4 group rounded-2xl overflow-hidden cursor-pointer open:bg-white/5 transition-colors">
+                    <summary class="p-6 font-semibold flex justify-between items-center text-white/90">
+                        <span id="cms-gst-faq3-q">Chhote business ko GST chahiye?</span>
+                        <i class="fa-solid fa-chevron-down transition-transform duration-300 group-open:rotate-180"></i>
+                    </summary>
+                    <div class="px-6 pb-6 text-white/60 text-sm leading-relaxed" id="cms-gst-faq3-a">
+                        Agar aap e-commerce (Amazon/Flipkart) par sell karte hain ya B2B services dete hain, toh turnover chota hone par bhi GST mandatory ho sakta hai. Normal offline businesses ke liye ek turnover limit (jaise 40 Lakh) hoti hai.
+                    </div>
+                </details>
+            </div>
+
+            <!-- 9. Final CTA -->
+            <div class="ios-glass-heavy p-10 rounded-[28px] text-center relative overflow-hidden ios-fade-up border border-[var(--ios-accent)]">
+                <div class="absolute inset-0 opacity-20" style="background: linear-gradient(135deg, transparent, var(--ios-accent), transparent);"></div>
+                <div class="relative z-10">
+                    <h3 id="cms-gst-cta-title" class="text-2xl md:text-3xl font-bold text-white tracking-tight mb-4">Aaj hi contact karein aur apna GST Registration turant banwayein!</h3>
+                    <p id="cms-gst-cta-sub" class="text-white/70 mb-8 font-light">Call or WhatsApp: <span class="font-semibold text-white">+91 9102288372</span> | Location: Biraul, Darbhanga</p>
+                    <a href="https://wa.me/919102288372" target="_blank" class="inline-flex items-center px-8 py-4 ios-btn ios-btn-primary text-base font-bold text-white shadow-xl shadow-blue-500/40 hover:scale-105">
+                        <i class="fa-brands fa-whatsapp text-2xl mr-3"></i> Chat with our Expert
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
     <!-- Features Section -->
-    <section id="features" class="py-24 relative section-toggle">
+    <section id="features" class="py-24 relative section-toggle border-t border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row gap-16 items-center">
                 
@@ -417,7 +634,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-24 relative section-toggle">
+    <section id="contact" class="py-24 relative section-toggle border-t border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 ios-fade-up">
                 <h2 class="font-semibold tracking-widest uppercase text-xs mb-3" style="color: var(--ios-accent)">Get In Touch</h2>
@@ -548,7 +765,7 @@
     <!-- --- Floating WhatsApp Button --- -->
     <a href="https://wa.me/919102288372" target="_blank" class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center text-white shadow-2xl transition-all duration-300 hover:scale-110 wa-float-btn" style="background: linear-gradient(135deg, #25D366, #128C7E);" title="Chat with us on WhatsApp">
         <i class="fa-brands fa-whatsapp text-3xl"></i>
-        <!-- Chota notification dot -->
+        <!-- Notification dot -->
         <span class="absolute top-0 right-0 flex h-4 w-4">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
             <span class="relative inline-flex rounded-full h-4 w-4 bg-red-500 border-2 border-white"></span>
